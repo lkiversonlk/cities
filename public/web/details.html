@@ -128,9 +128,9 @@
 <div class="c-content-box c-size-md c-bg-white">
 	<div class="container" style="width:70%">
 		<div class="c-content-title-2">
-			<h3 class="c-center c-font-dark">GeoID:{ {{{data.lat}}},{{{data.lon}}} }</h3>
-			<p class="c-center">Tokyo | Token#:{{{id}}}  |  Reproduciable |  <span class="c-content-label c-font-bold c-bg-green">Price: <span name="price" e-id={{{id}}}>loading...</span></span></p>
-			<div class="c-center"><a href="#" class="btn btn-xlg c-btn-yellow c-btn-circle">Buy This Token</a></div>
+			<h3 class="c-center c-font-dark">GeoID:{ {{{data.lat}}},{{{data.lon}}} }, Lv {{{data.lv}}}</h3>
+			<p class="c-center">Tokyo | Token#:{{{id}}} |  <span class="c-content-label c-font-bold c-bg-green">Price: <span name="price" e-id={{{id}}}>loading...</span></span></p>
+			<div class="c-center"><a href="#" id="buy" class="btn btn-xlg c-btn-yellow c-btn-circle">Buy This Token</a></div>
 		</div>	
 			
 		<!--
@@ -266,11 +266,13 @@
 	<script src="../assets/base/js/components.js" type="text/javascript"></script>
 	<script src="../assets/base/js/components-shop.js" type="text/javascript"></script>
 	<script src="../assets/base/js/app.js" type="text/javascript"></script>
+	<script src="../assets/base/js/ethereum.js" type="text/javascript"></script>
 	<script>
 	$(document).ready(function() {    
 		App.init(); // init core    
 	});
 	</script>
+	<script src="../assets/base/js/renderDetail.js"></script>
 	<!-- END: THEME SCRIPTS -->
 
 			<!-- BEGIN: PAGE SCRIPTS -->

@@ -45,7 +45,7 @@
 			<!-- BEGIN: BRAND -->
 			<div class="c-navbar-wrapper clearfix">
 				<div class="c-brand c-pull-left">
-					<a href="index.html" class="c-logo">
+					<a href="/" class="c-logo">
 						<img src="../assets/base/img/layout/logos/logo.png" alt="CitiesToken" class="c-desktop-logo">
 						<img src="../assets/base/img/layout/logos/logo.png" alt="CitiesToken" class="c-desktop-logo-inverse">
 						<img src="../assets/base/img/layout/logos/logo.png" alt="CitiesToken" class="c-mobile-logo">
@@ -79,17 +79,17 @@
 <nav class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-bold">
 	<ul class="nav navbar-nav c-theme-nav"> 
 						<li >
-						<a href="index.html" class="c-link dropdown-toggle">Home<span class="c-arrow c-toggler"></span></a>
+						<a href="/	" class="c-link dropdown-toggle">Home<span class="c-arrow c-toggler"></span></a>
 					</li>
 						<li class="c-active">
 						<a href="marketplace.html" class="c-link dropdown-toggle">Marketplace<span class="c-arrow c-toggler"></span></a>
 					</li>
 						<li >
-						<a href="faq.html" class="c-link dropdown-toggle">FAQ<span class="c-arrow c-toggler"></span></a>
+						<a href="/faq" class="c-link dropdown-toggle">FAQ<span class="c-arrow c-toggler"></span></a>
 												
 					</li>
 						<li >
-						<a href="mytokens.html" class="c-link dropdown-toggle">MyTokens<span class="c-arrow c-toggler"></span></a>
+						<a href="/mytokens" class="c-link dropdown-toggle">MyTokens<span class="c-arrow c-toggler"></span></a>
 										
 					</li>
 		
@@ -225,7 +225,14 @@
             <div class="cbp-l-filters-text-sort">Sort by:</div>
             <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">
                 All <div class="cbp-filter-counter"></div>
-            </div> /
+			</div> /
+
+			{{#each listTokens}}
+				<div data-filter=".{{{city}}}" class="cbp-filter-item">
+                	{{{cityName}}} <div class="cbp-filter-counter"></div>
+            	</div> /
+			{{/each}}
+			<!--
             <div data-filter=".tokyo" class="cbp-filter-item">
                 Tokyo <div class="cbp-filter-counter"></div>
             </div> /
@@ -240,238 +247,33 @@
             </div> /
             <div data-filter=".hongkong" class="cbp-filter-item">
                 HongKong <div class="cbp-filter-counter"></div>
-            </div>
+            </div>-->
         </div>
 
-        <div id="grid-container" class="cbp cbp-l-grid-agency"> 
-            <div class="cbp-item newyork">
-                <a href="#" target="_blank" >
-                    <div class="c-content-product-2 c-bg-white">
-					<div class="c-content-overlay">
-						<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">New York</div>
-						<div class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">0.2 ETH</div>
-						<div class="c-overlay-wrapper">
-							<div class="c-overlay-content">
-								<a href="details.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Buy</a>
+        <div id="grid-container" class="cbp cbp-l-grid-agency">
+			{{#each listTokens}}
+				{{#each tokens}}
+					<div class="cbp-item {{{../city}}}">
+						<a href="#" target="_blank" >
+							<div class="c-content-product-2 c-bg-white">
+							<div class="c-content-overlay">
+								<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">{{{../cityName}}}</div>
+								<div name="price" e-id="{{{id}}}" class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">loading...</div>
+								<div class="c-overlay-wrapper">
+									<div class="c-overlay-content">
+										<a href="/details/{{{id}}}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Buy</a>
+									</div>
+								</div>
+								<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=40.7195,-73.9990&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C40.7195,-73.9990&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
 							</div>
-						</div>
-						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=40.7195,-73.9990&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C40.7195,-73.9990&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
-					</div>
-
-                    </div>
-                    <div class="cbp-l-grid-agency-title">GeoID:{40.7195,-73.9990}</div>
-                    <div class="cbp-l-grid-agency-desc">Reproducible - Level 1</div>
-                </a>
-            </div>
-            <div class="cbp-item tokyo">
-                <a href="#" target="_blank">
-                    <div class="c-content-product-2 c-bg-white">
-					<div class="c-content-overlay">
-						<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">Tokyo</div>
-						<div class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">0.2 ETH</div>
-						<div class="c-overlay-wrapper">
-							<div class="c-overlay-content">
-								<a href="details.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Buy</a>
+		
 							</div>
-						</div>
-						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=35.7155,139.7760&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C35.7155,139.7760&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
+							<div class="cbp-l-grid-agency-title">GeoID:({{{lat}}}, {{{lon}}})</div>
+							<div class="cbp-l-grid-agency-desc">Reproducible - Fast</div>
+						</a>
 					</div>
-
-                    </div>
-                    <div class="cbp-l-grid-agency-title">GeoID:{35.7155,139.7760}</div>
-                    <div class="cbp-l-grid-agency-desc">Unreproducible</div>
-                </a>
-            </div>
-            <div class="cbp-item losangeles">
-                <a href="#" target="_blank">
-                    <div class="c-content-product-2 c-bg-white">
-					<div class="c-content-overlay">
-						<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">Los Angeles</div>
-						<div class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">0.2 ETH</div>
-						<div class="c-overlay-wrapper">
-							<div class="c-overlay-content">
-								<a href="details.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Buy</a>
-							</div>
-						</div>
-						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=34.0400,-118.2565&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C34.0400,-118.2565&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
-					</div>
-
-                    </div>
-                    <div class="cbp-l-grid-agency-title">GeoID:{34.0400,-118.2565}</div>
-                    <div class="cbp-l-grid-agency-desc">Reproducible - Level 1</div>
-                </a>
-            </div>
-            <div class="cbp-item seoul">
-                <a href="#" target="_blank">
-                    <div class="c-content-product-2 c-bg-white">
-					<div class="c-content-overlay">
-						<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">Seoul</div>
-						<div class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">0.2 ETH</div>
-						<div class="c-overlay-wrapper">
-							<div class="c-overlay-content">
-								<a href="details.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Buy</a>
-							</div>
-						</div>
-						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=37.5595,126.9790&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C37.5595,126.9790&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
-					</div>
-
-                    </div>
-                    <div class="cbp-l-grid-agency-title">GeoID:{37.5595,126.9790}</div>
-                    <div class="cbp-l-grid-agency-desc">Reproducible - Level 3</div>
-                </a>
-            </div>
-            <div class="cbp-item newyork">
-                <a href="#" target="_blank">
-                    <div class="c-content-product-2 c-bg-white">
-					<div class="c-content-overlay">
-						<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">New York</div>
-						<div class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">0.2 ETH</div>
-						<div class="c-overlay-wrapper">
-							<div class="c-overlay-content">
-								<a href="details.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Buy</a>
-							</div>
-						</div>
-						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=40.7195,-73.9990&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C40.7195,-73.9990&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
-					</div>
-
-                    </div>
-                    <div class="cbp-l-grid-agency-title">GeoID:{37.5595,126.9790}</div>
-                    <div class="cbp-l-grid-agency-desc">Reproducible - Level 3</div>
-                </a>
-            </div>
-            <div class="cbp-item newyork">
-                <a href="#" target="_blank" >
-                    <div class="c-content-product-2 c-bg-white">
-					<div class="c-content-overlay">
-						<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">New York</div>
-						<div class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">0.2 ETH</div>
-						<div class="c-overlay-wrapper">
-							<div class="c-overlay-content">
-								<a href="details.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Buy</a>
-							</div>
-						</div>
-						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=40.7195,-73.9990&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C40.7195,-73.9990&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
-					</div>
-
-                    </div>
-                    <div class="cbp-l-grid-agency-title">GeoID:{40.7195,-73.9990}</div>
-                    <div class="cbp-l-grid-agency-desc">Reproducible - Level 1</div>
-                </a>
-            </div>
-            <div class="cbp-item tokyo">
-                <a href="#" target="_blank">
-                    <div class="c-content-product-2 c-bg-white">
-					<div class="c-content-overlay">
-						<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">Tokyo</div>
-						<div class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">0.2 ETH</div>
-						<div class="c-overlay-wrapper">
-							<div class="c-overlay-content">
-								<a href="details.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Buy</a>
-							</div>
-						</div>
-						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=35.7155,139.7760&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C35.7155,139.7760&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
-					</div>
-
-                    </div>
-                    <div class="cbp-l-grid-agency-title">GeoID:{35.7155,139.7760}</div>
-                    <div class="cbp-l-grid-agency-desc">Unreproducible</div>
-                </a>
-            </div>
-            <div class="cbp-item losangeles">
-                <a href="#" target="_blank">
-                    <div class="c-content-product-2 c-bg-white">
-					<div class="c-content-overlay">
-						<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">Los Angeles</div>
-						<div class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">0.2 ETH</div>
-						<div class="c-overlay-wrapper">
-							<div class="c-overlay-content">
-								<a href="details.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Buy</a>
-							</div>
-						</div>
-						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=34.0400,-118.2565&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C34.0400,-118.2565&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
-					</div>
-
-                    </div>
-                    <div class="cbp-l-grid-agency-title">GeoID:{34.0400,-118.2565}</div>
-                    <div class="cbp-l-grid-agency-desc">Reproducible - Level 1</div>
-                </a>
-            </div>
-            <div class="cbp-item seoul">
-                <a href="#" target="_blank">
-                    <div class="c-content-product-2 c-bg-white">
-					<div class="c-content-overlay">
-						<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">Seoul</div>
-						<div class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">0.2 ETH</div>
-						<div class="c-overlay-wrapper">
-							<div class="c-overlay-content">
-								<a href="details.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Buy</a>
-							</div>
-						</div>
-						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=37.5595,126.9790&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C37.5595,126.9790&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
-					</div>
-
-                    </div>
-                    <div class="cbp-l-grid-agency-title">GeoID:{37.5595,126.9790}</div>
-                    <div class="cbp-l-grid-agency-desc">Reproducible - Level 3</div>
-                </a>
-            </div>
-            <div class="cbp-item newyork">
-                <a href="#" target="_blank">
-                    <div class="c-content-product-2 c-bg-white">
-					<div class="c-content-overlay">
-						<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">New York</div>
-						<div class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">0.2 ETH</div>
-						<div class="c-overlay-wrapper">
-							<div class="c-overlay-content">
-								<a href="details.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Buy</a>
-							</div>
-						</div>
-						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=40.7195,-73.9990&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C40.7195,-73.9990&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
-					</div>
-
-                    </div>
-                    <div class="cbp-l-grid-agency-title">GeoID:{37.5595,126.9790}</div>
-                    <div class="cbp-l-grid-agency-desc">Reproducible - Level 3</div>
-                </a>
-            </div>
-            <div class="cbp-item seoul">
-                <a href="#" target="_blank">
-                    <div class="c-content-product-2 c-bg-white">
-					<div class="c-content-overlay">
-						<div class="c-label c-bg-green c-font-uppercase c-font-white c-font-13 c-font-bold">Seoul</div>
-						<div class="c-label c-label-right c-bg-red c-font-uppercase c-font-white c-font-13 c-font-bold">0.2 ETH</div>
-						<div class="c-overlay-wrapper">
-							<div class="c-overlay-content">
-								<a href="details.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Buy</a>
-							</div>
-						</div>
-						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=37.5595,126.9790&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C37.5595,126.9790&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
-					</div>
-
-                    </div>
-                    <div class="cbp-l-grid-agency-title">GeoID:{37.5595,126.9790}</div>
-                    <div class="cbp-l-grid-agency-desc">Reproducible - Level 3</div>
-                </a>
-            </div>
-            <div class="cbp-item newyork">
-                <a href="#" target="_blank">
-                    <div class="c-content-product-2 c-bg-white">
-					<div class="c-content-overlay">
-						<div class="c-label c-bg-green c-font-uppercase c-font-white c-font-13 c-font-bold">New York</div>
-						<div class="c-label c-label-right c-bg-red c-font-uppercase c-font-white c-font-13 c-font-bold">0.2 ETH</div>
-						<div class="c-overlay-wrapper">
-							<div class="c-overlay-content">
-								<a href="details.html" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Buy</a>
-							</div>
-						</div>
-						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=40.7195,-73.9990&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C40.7195,-73.9990&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
-					</div>
-
-                    </div>
-                    <div class="cbp-l-grid-agency-title">GeoID:{37.5595,126.9790}</div>
-                    <div class="cbp-l-grid-agency-desc">Reproducible - Level 3</div>
-                </a>
-            </div>
+				{{/each}}
+			{{/each}}  
         </div>
 
         <div id="loadMore-container" class="cbp-l-loadMore-button c-margin-t-60">
@@ -571,11 +373,13 @@
 	<script src="../assets/base/js/components.js" type="text/javascript"></script>
 	<script src="../assets/base/js/components-shop.js" type="text/javascript"></script>
 	<script src="../assets/base/js/app.js" type="text/javascript"></script>
+	<script src="../assets/base/js/ethereum.js" type="text/javascript"></script>
 	<script>
 	$(document).ready(function() {    
 		App.init(); // init core    
 	});
 	</script>
+	<script src="../assets/base/js/renderMarket.js"></script>
 	<!-- END: THEME SCRIPTS -->
 
 			<!-- BEGIN: PAGE SCRIPTS -->

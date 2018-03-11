@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var exphbs = require("express-handlebars");
 var index = require('./routes/index');
 var users = require('./routes/users');
+var Tool = require("./routes/id");
 
 var app = express();
 
@@ -14,11 +15,19 @@ var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('views', path.join(__dirname, 'public/web'));
+
+let Config = {
+  lv : 4
+}
+
 app.engine('.html', exphbs({
-  extname: ".html"
+  extname: ".html",
+  helpers: {
+  }
 }));
 
 app.set('view engine', '.html');
+app.set("tool", new Tool(Config.lv));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

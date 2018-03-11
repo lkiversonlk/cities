@@ -12,6 +12,9 @@ function Tool(lv) {
 
   self.fromIdToLonLat = function(id) {
     let lv = id % self.latOffset;
+    if(lv >= self.lv) {
+      return { err: `lv ${lv} is invalid` }
+    }
     let lat = Math.floor(id % self.lonOffset / self.latOffset) / self.float;
     let lon = Math.floor(id / self.lonOffset) / self.float;
 
