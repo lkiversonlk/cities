@@ -250,7 +250,7 @@ contract GeoAmoeba is AmoebaBase, ERC721 {
     function GeoAmoeba(uint256 lv) public validMaxLv(lv) {
         maxLv = lv;
         latOffset = 10 ** 2;
-        lonOffset = latOffset * 10 ** (3 + lv - 1);
+        lonOffset = latOffset * 10 ** (2 + 3 + lv - 1);
         maxLon = 360 * (10 ** (lv - 1));
         maxLat = 180 * (10 ** (lv - 1));
     }

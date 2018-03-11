@@ -1,0 +1,52 @@
+{
+    "listTokens":[
+        {
+            "city":"beijing",
+            "cityName":"Bei Jing",
+            "tokens":[
+                {
+                    "id": 23412323,
+                    "lon":23.3,
+                    "lat":23.11,
+                    "lv":0
+                }
+            ]
+        },
+        {
+            "city":"newyork",
+            "cityName":"New York",
+            "tokens":[
+                {
+                    "id": 23412323,
+                    "lon":21.113,
+                    "lat":23.131,
+                    "lv":0
+                }
+            ]
+        },
+        {
+            "city":"losangelse",
+            "cityName":"Los Angeles",
+            "tokens":[
+                {
+                    "id": 23412323,
+                    "lon":23.3,
+                    "lat":2.311,
+                    "lv":0
+                }
+            ]
+        },
+        {
+            "city":"seoul",
+            "cityName":"Seoul",
+            "tokens":[
+                {
+                    "id": 12300002000001,
+                    "lon":23.3,
+                    "lat":23.11,
+                    "lv":0
+                }
+            ]
+        }
+    ]
+}

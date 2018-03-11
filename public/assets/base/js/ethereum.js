@@ -79,22 +79,24 @@ var ethereum = function(onNetFail) {
     })
     .catch(onNetFail)
 
-    let getContractIns = new Promise((resolve, reject) => {
-      return getWeb3
-      .then(ethereum => {
-        if(!NETWORKS.hasOwnProperty(ethereum.networkId)) {
-          return reject(ERRORS.UNKNOWNNETWORK);
-        }
-        let c_addr = NETWORKS[ethereum.networkId];
-
-        if (c_addr) {
-          let contract = ethereum.web3.contract(abi);
-          return resolve(contract.at(c_addr));
-        } else {
-          return reject(ERRORS.NETWORKNOTSUPPORTED);
-        }
+    let getContractIns = () => {
+      return new Promise((resolve, reject) => {
+        return getWeb3
+        .then(ethereum => {
+          if(!NETWORKS.hasOwnProperty(ethereum.networkId)) {
+            return reject(ERRORS.UNKNOWNNETWORK);
+          }
+          let c_addr = NETWORKS[ethereum.networkId];
+  
+          if (c_addr) {
+            let contract = ethereum.web3.contract(abi);
+            return resolve(contract.at(c_addr));
+          } else {
+            return reject(ERRORS.NETWORKNOTSUPPORTED);
+          }
+        })
       })
-    })
+    }
 
     return {
       getWeb3,

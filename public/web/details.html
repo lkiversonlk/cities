@@ -46,7 +46,7 @@
 			<!-- BEGIN: BRAND -->
 			<div class="c-navbar-wrapper clearfix">
 				<div class="c-brand c-pull-left">
-					<a href="index.html" class="c-logo">
+					<a href="/" class="c-logo">
 						<img src="../assets/base/img/layout/logos/logo.png" alt="CitiesToken" class="c-desktop-logo">
 						<img src="../assets/base/img/layout/logos/logo.png" alt="CitiesToken" class="c-desktop-logo-inverse">
 						<img src="../assets/base/img/layout/logos/logo.png" alt="CitiesToken" class="c-mobile-logo">
@@ -80,17 +80,17 @@
 <nav class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-bold">
 	<ul class="nav navbar-nav c-theme-nav"> 
 						<li >
-						<a href="index.html" class="c-link dropdown-toggle">Home<span class="c-arrow c-toggler"></span></a>
+						<a href="/" class="c-link dropdown-toggle">Home<span class="c-arrow c-toggler"></span></a>
 					</li>
 						<li class="c-active">
-						<a href="marketplace.html" class="c-link dropdown-toggle">Marketplace<span class="c-arrow c-toggler"></span></a>
+						<a href="/marketplace" class="c-link dropdown-toggle">Marketplace<span class="c-arrow c-toggler"></span></a>
 					</li>
 						<li >
-						<a href="faq.html" class="c-link dropdown-toggle">FAQ<span class="c-arrow c-toggler"></span></a>
+						<a href="/faq" class="c-link dropdown-toggle">FAQ<span class="c-arrow c-toggler"></span></a>
 												
 					</li>
 						<li >
-						<a href="mytokens.html" class="c-link dropdown-toggle">MyTokens<span class="c-arrow c-toggler"></span></a>
+						<a href="/mytokens" class="c-link dropdown-toggle">MyTokens<span class="c-arrow c-toggler"></span></a>
 										
 					</li>
 		
@@ -128,11 +128,12 @@
 <div class="c-content-box c-size-md c-bg-white">
 	<div class="container" style="width:70%">
 		<div class="c-content-title-2">
-			<h3 class="c-center c-font-dark">GeoID:{35.7155,139.7760}</h3>
-			<p class="c-center">Tokyo | Token#:3887756  |  Reproduciable |  <span class="c-content-label c-font-bold c-bg-green">Price: 0.02ETH</span></p>
+			<h3 class="c-center c-font-dark">GeoID:{ {{{data.lat}}},{{{data.lon}}} }</h3>
+			<p class="c-center">Tokyo | Token#:{{{id}}}  |  Reproduciable |  <span class="c-content-label c-font-bold c-bg-green">Price: <span name="price" e-id={{{id}}}>loading...</span></span></p>
 			<div class="c-center"><a href="#" class="btn btn-xlg c-btn-yellow c-btn-circle">Buy This Token</a></div>
 		</div>	
 			
+		<!--
 		<div class="c-content-panel">
 			<div class="c-label">Price</div>
 			<div class="c-body">
@@ -146,6 +147,7 @@
 				</div>
 			</div>
 		</div>
+	-->
 		<div class="c-content-panel">
 			<div class="c-label">Reproduce</div>
 			<div class="c-body">
