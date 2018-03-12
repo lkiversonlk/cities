@@ -118,16 +118,19 @@ contract AmoebaBase is AmoebaControl {
         }
         
         //remove from prev owner's stats
-        if (_from != address(0) && _from != address(this)) {
+        // if transfer from owner to contract, which means the token is on selling, doesn't remove it from previous owner
+        if (_from != address(0) && _from != address(this) && _to != address(this)) {
             uint256 i = 0;
             for(; i < owned[_from].length; i ++) {
                 if (owned[_from][i] == _pos_id) {
                     break;
                 }
             }
-            assert(i < owned[_from].length);
-            owned[_from][i] = owned[_from][owned[_from].length - 1];
-            owned[_from].length = owned[_from].length - 1;
+            if(i < owned[_from].length) {
+                owned[_from][i] = owned[_from][owned[_from].length - 1];
+                owned[_from].length = owned[_from].length - 1;
+            }
+
         }
         
         //clear approved info
@@ -143,12 +146,14 @@ contract AmoebaBase is AmoebaControl {
 
     function _createToken(
         uint256 _id,
-        address _to
+        address _to,
+        uint256 _price
     ) internal
     {
         //not allow repeat creation
         require(positions[_id].owner == address(0));
         _transfer(0, _to, _id);
+        positions[_id].price = _price;
         
         //events
         NewToken(_to, _id);
@@ -372,7 +377,7 @@ contract GeoAmoeba is AmoebaBase, ERC721 {
         }
         uint256 j = _randSeed % _ava.length;
         
-        _createToken(j, msg.sender);
+        _createToken(j, msg.sender, positions[i].price);
     }
 }
 
@@ -445,7 +450,7 @@ contract AuctionAmoeba is GeoAmoeba {
         AuctionCancelled(_id);
     }
 
-    function _currentPrice(uint256 i) internal view returns (uint256)
+    function currentPrice(uint256 i) public view returns (uint256)
     {
         Auction memory _auction = auctions[i];
         uint256 secondsPassed = 0;
@@ -472,8 +477,8 @@ contract AuctionAmoeba is GeoAmoeba {
         } else {
             int256 _priceRange = int256(_endPrice) - int256(_startPrice);
             int256 _priceChange = _priceRange * int256(_secondsPassed) / int256(_duration);
-            int256 currentPrice = int256(_startPrice) + int256(_priceChange);
-            return uint256(currentPrice);
+            int256 cp = int256(_startPrice) + int256(_priceChange);
+            return uint256(cp);
         }
     }
 
@@ -499,7 +504,7 @@ contract AuctionAmoeba is GeoAmoeba {
      * return the final price
      */
     function _bid(uint256 i, uint256 value) internal returns (uint256) {
-        uint256 price = _currentPrice(i);
+        uint256 price = currentPrice(i);
         
         if (price < bidFloor) {
             price = bidFloor;
@@ -537,10 +542,12 @@ contract AuctionAmoeba is GeoAmoeba {
      * and the token's price will be updated
      */
     function bid(uint256 i) public payable onStage(i, Stage.ONSELL) {
+        address seller = auctions[i].seller;
         uint256 price = _bid(i, msg.value);
-        transfer(msg.sender, i);
+        _transfer(seller, msg.sender, i);
         msg.sender.transfer(msg.value - price); //return extra value
         positions[i].price = price;
+        auction(i);
     }
     
     /**

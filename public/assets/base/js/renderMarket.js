@@ -1,13 +1,3 @@
-var renderPage = function() {
-  $.get("/assets/tpl/token.hbs", data=>{
-    _tpl = Handlebars.compile(data);
-    $.get("/assets/data/listTokens.json", data => {
-      $("#grid-container").html(
-        _tpl(data)
-      )
-    })
-  })
-}
 let ether = ethereum((err) => {
   alert(err);
 })
@@ -21,7 +11,7 @@ ether
   return ether;
 })
 .then(_ether => {
-  return _ether.getContractIns();
+  return _ether.getContractIns;
 })
 .then(ins => {
   ins.bidFloor((err, floor) => {

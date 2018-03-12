@@ -11,7 +11,7 @@ ether
   return ether;
 })
 .then(_ether => {
-  return _ether.getContractIns();
+  return _ether.getContractIns;
 })
 .then(ins => {
   ins.bidFloor((err, floor) => {
