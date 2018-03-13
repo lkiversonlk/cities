@@ -1,3 +1,4 @@
+/*
 let ether = ethereum((err) => {
   alert(err);
 })
@@ -34,10 +35,19 @@ ether
 .catch(err => {
   alert(err);
 })
+*/
 
+function render() {
+  $('#grid-container [name="price"]').each((i, ele) => {
+    let id = ele.getAttribute('e-id');
+    //console.log(id);
+    ether.getPriceWithFloor(id)
+    .then(price => {
+      $(ele).text(`${price} ETH`);
+    })
+  });
+}
 
-
-
-
+render();
 
 // renderPage();
