@@ -93,6 +93,7 @@ var ethereum = function(onNetFail) {
       })
     })
 
+
     /*
     (addr) => {
       return new Promise((resolve, reject) => {
@@ -110,11 +111,61 @@ var ethereum = function(onNetFail) {
       })
     }*/
 
+    let getPriceWithFloor = function(i) {
+      return getContractIns
+      .then(ins => {
+        return new Promise((resolve, reject) => {
+          ins.bidFloor((err, floor) => {
+            if(err) {
+              reject(err);
+            } else {
+              ins.currentPrice(i, (err, price) => {
+                if(err) {
+                  console.log(`fail to get ${i}'s info `, err);
+                  reject(err);
+                } else {
+                  resolve(getWeb3
+                    .then(ethereum=>{
+                      return ethereum.web3.fromWei(price.toNumber());
+                    }));
+                }
+              });
+            }
+          })
+        })
+      })
+    }
     
-
+    let buyToken = function(_i) {
+      let i = parseInt(_i)
+      getContractIns
+      .then(ins => {
+        return new Promise((resolve, reject) => {
+          ins.currentPrice(i, (err, price) => {
+            if(err) {
+              reject(err)
+            } else {
+              ins.bid(i, {value: price.toNumber()}, (err, tx) => {
+                if(err) {
+                  reject(err)
+                } else {
+                  resolve(tx)
+                }
+              })
+            }
+          })
+        })        
+      })
+    }
     return {
       getWeb3,
       getContractIns,
-      config
+      config,
+      getPriceWithFloor,
+      buyToken
     }
 };
+
+ether = ethereum()
+
+ether.getContractIns.catch((err) => {alert(err);})

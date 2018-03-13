@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var exphbs = require("express-handlebars");
 var index = require('./routes/index');
 var users = require('./routes/users');
-var Tool = require("./routes/id");
+var Tool = require("./public/tool");
 var Web3 = require("web3");
 
 var web3 = new Web3();
@@ -27,8 +27,6 @@ web3.setProvider(new web3.providers.HttpProvider(`https://${networkMap[config.cu
 let contract = web3.eth.contract(config.configs[config.current].abi);
 let ins = contract.at(config.configs[config.current].addr);
 
-
-
 ins.maxLv((err, lv) => {
   if(err) {
     console.log(err);
@@ -36,26 +34,36 @@ ins.maxLv((err, lv) => {
   } else {
     let _lv = lv.toNumber();
     console.log(`connected to ${config.configs[config.current].addr}, lv ${_lv}`)
-    app.set("tool", new Tool(_lv));
+    var _tool = new Tool(_lv);
+    app.set("tool", _tool);
+
+    app.set('views', path.join(__dirname, 'public/web'));
+
+    app.engine('.html', exphbs({
+      extname: ".html",
+      helpers: {
+        G2Id: function(lat, lon, lv) {
+          return _tool.fromGoogleToId(lat, lon, lv)
+        },
+        Id2G: function(id) {
+          return _tool.fromIdToGoogle(id)
+        },
+        gmap: function(lat, lon) {
+          return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lon}&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C${lat},${lon}&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A`          
+        },
+        gmapBanner: function(lat, lon) {
+          return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lon}&zoom=18&size=640x200&scale=2&maptype=roadmap&markers=color:blue%7Clabel:C%7C${lat},${lon}&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A`
+        }
+      }
+    }));
+
+    app.set('view engine', '.html');
   }
 });
 var app = express();
 app.set('ins', ins);
 // view engine setup
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.set('views', path.join(__dirname, 'public/web'));
-
-app.engine('.html', exphbs({
-  extname: ".html",
-  helpers: {
-    gmap: function(lat, lon) {
-      return `https://maps.googleapis.com/maps/api/staticmap?center=${90-lat},${lon-180}&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C${90-lat},${lon-180}&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A`
-    }
-  }
-}));
-
-app.set('view engine', '.html');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -78,7 +86,8 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-  res.locals.message = err.message;
+  console.log(err.stack);
+    res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   console.log(JSON.stringify(res.locals.message));
   // render the error page

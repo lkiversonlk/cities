@@ -121,16 +121,19 @@
 	<div class="c-layout-page">
 
 		<!-- BEGIN: LAYOUT/BREADCRUMBS/BREADCRUMBS-4 -->
-<div class="c-layout-breadcrumbs-1 c-bgimage-full c-centered c-fonts-uppercase c-fonts-bold c-bg-img-center" style="background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=35.7155,139.7760&zoom=18&size=640x200&scale=2&maptype=roadmap&markers=color:blue%7Clabel:C%7C35.7155,139.7760&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A)">
+<div class="c-layout-breadcrumbs-1 c-bgimage-full c-centered c-fonts-uppercase c-fonts-bold c-bg-img-center" style="background-image: url({{{gmapBanner lat lon}}})">
 	</div>
 	<!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-4 -->
 		<!-- BEGIN: PAGE CONTENT -->
 <div class="c-content-box c-size-md c-bg-white">
-	<div class="container" style="width:70%">
+	<div id="buysell" class="container" style="width:70%">
 		<div class="c-content-title-2">
-			<h3 class="c-center c-font-dark">GeoID:{ {{{data.lat}}},{{{data.lon}}} }, Lv {{{data.lv}}}</h3>
+			<h3 class="c-center c-font-dark">GeoID:{ {{{lat}}},{{{lon}}} }, Lv {{{lv}}}</h3>
 			<p class="c-center">Tokyo | Token#:{{{id}}} |  <span class="c-content-label c-font-bold c-bg-green">Price: <span name="price" e-id={{{id}}}>loading...</span></span></p>
-			<div class="c-center"><a href="#" id="buy" class="btn btn-xlg c-btn-yellow c-btn-circle">Buy This Token</a></div>
+			<div class="c-center" id="buy" style="display:none"><a href="#" class="btn btn-xlg c-btn-yellow c-btn-circle">Buy This Token</a></div>
+			<div class="c-center _button" id="sell" style="display:none"><a href="#" class="btn btn-xlg c-btn-yellow c-btn-circle">Sell This Token</a></div>
+			<div class="c-center _button" id="unsell" style="display:none"><a href="#" class="btn btn-xlg c-btn-yellow c-btn-circle">Unsell This Token</a></div>
+			<div class="c-center _button" id="reproduce" style="display:none"><a href="#" class="btn btn-xlg c-btn-yellow c-btn-circle">Reproduce</a></div>
 		</div>	
 			
 		<!--

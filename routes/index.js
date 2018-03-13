@@ -4,22 +4,20 @@ var router = express.Router();
 var data = require("../public/assets/data/listTokens.json");
 
 router.get("/", (req, res) => {
-  return res.render('index');
+  return res.render('index', data);
 })
 
 router.get("/details/:id", (req, res) => {
   let tool = req.app.get("tool");
   let id = parseInt(req.params['id']);
-  let data = tool.fromIdToLonLat(id);
+  let data = tool.fromIdToGoogle(id);
   const async = require("async");
 
   if(data.err) {
     return res.send(`${id} is not valid`)
   } else {
-    return res.render('details', {
-      id: req.params['id'],
-      data
-    });
+    data = Object.assign(data, {id: req.params['id']})
+    return res.render('details', data);
   }
 })
 
