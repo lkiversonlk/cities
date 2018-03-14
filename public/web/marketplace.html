@@ -254,17 +254,16 @@
 				<div class="cbp-item {{{city}}}">
 					<a href="#" target="_blank" >
 						<div class="c-content-product-2 c-bg-white">
-						<div class="c-content-overlay">
-							<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">{{{cityName}}}</div>
-							<div name="price" e-id="{{{G2Id lat lon lv}}}" class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">loading...</div>
-							<div class="c-overlay-wrapper">
-								<div class="c-overlay-content">
-									<a href="/details/{{{G2Id lat lon lv}}}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Buy</a>
+							<div class="c-content-overlay">
+								<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">{{{cityName}}}</div>
+								<div name="price" e-id="{{{G2Id lat lon lv}}}" class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">loading...</div>
+								<div class="c-overlay-wrapper">
+									<div class="c-overlay-content">
+										<a name="action" e-id="{{{G2Id lat lon lv}}}" href="/details/{{{G2Id lat lon lv}}}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Loading</a>
+									</div>
 								</div>
+								<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url({{{gmap lat lon}}});"></div>
 							</div>
-							<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=40.7195,-73.9990&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C40.7195,-73.9990&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
-						</div>
-	
 						</div>
 						<div class="cbp-l-grid-agency-title">GeoID:({{{lat}}}, {{{lon}}})</div>
 						<div e-id="{{{G2Id lat lon lv}}}" name='reproducible' class="cbp-l-grid-agency-desc">Loading...</div>
@@ -272,7 +271,6 @@
 				</div>
 			{{/each}}
         </div>
-
         <div id="loadMore-container" class="cbp-l-loadMore-button c-margin-t-60">
             <a href="ajax/index-gallery/load-more.html" class="cbp-l-loadMore-link btn c-btn-square c-btn-border-2x c-btn-dark c-btn-bold c-btn-uppercase">
                 <span class="cbp-l-loadMore-defaultText">LOAD MORE</span>
