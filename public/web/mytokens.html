@@ -99,7 +99,7 @@
 		</li>
 		
 				<li>
-			<a href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i> Sign In</a>
+			<a style="display: none;" href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i> Sign In</a>
 		</li>
 		
 		
@@ -210,7 +210,8 @@
             <div class="cbp-l-filters-text-sort">Sort by:</div>
             <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">
                 All <div class="cbp-filter-counter"></div>
-            </div> /
+			</div> /
+			<!--
             <div data-filter=".tokyo" class="cbp-filter-item">
                 Tokyo <div class="cbp-filter-counter"></div>
             </div> /
@@ -225,7 +226,8 @@
             </div> /
             <div data-filter=".hongkong" class="cbp-filter-item">
                 HongKong <div class="cbp-filter-counter"></div>
-            </div>
+			</div>
+		    -->
         </div>
 
  		<div class="c-content-title-2">
@@ -234,6 +236,30 @@
 		</div>	
 
         <div id="grid-container" class="cbp cbp-l-grid-agency"> 
+			{{#each listTokens}}
+			{{#each tokens}}
+				<div class="cbp-item {{{../city}}}">
+					<a href="#" target="_blank" >
+						<div class="c-content-product-2 c-bg-white">
+						<div class="c-content-overlay">
+							<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">{{{../cityName}}}</div>
+							<div name="price" e-id="{{{id}}}" class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">loading...</div>
+							<div class="c-overlay-wrapper">
+								<div class="c-overlay-content">
+									<a href="/details/{{{G2Id lat lon lv}}}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Buy</a>
+								</div>
+							</div>
+							<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url({{{gmap lat lon}}});"></div>
+						</div>
+	
+						</div>
+						<div class="cbp-l-grid-agency-title">GeoID:({{{lat}}}, {{{lon}}})</div>
+						<div class="cbp-l-grid-agency-desc">Reproducible - Fast</div>
+					</a>
+				</div>
+				{{/each}}
+			{{/each}}
+			<!--
             <div class="cbp-item newyork">
                 <a href="#" target="_blank" >
                     <div class="c-content-product-2 c-bg-white">
@@ -252,7 +278,9 @@
                     <div class="cbp-l-grid-agency-title">GeoID:{40.7195,-73.9990}</div>
                     <div class="cbp-l-grid-agency-desc">Reproducible - Fast</div>
                 </a>
-            </div>
+			</div>
+			
+
             <div class="cbp-item tokyo">
                 <a href="#" target="_blank">
                     <div class="c-content-product-2 c-bg-white">
@@ -308,7 +336,8 @@
                     <div class="cbp-l-grid-agency-title">GeoID:{37.5595,126.9790}</div>
                     <div class="cbp-l-grid-agency-desc c-font-red">UnReproducible</div>
                 </a>
-            </div>
+			</div>
+		    -->
         </div>
 
         <div id="loadMore-container" class="cbp-l-loadMore-button c-margin-t-60">

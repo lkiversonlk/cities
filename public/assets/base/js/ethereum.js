@@ -147,9 +147,9 @@ var ethereum = function(onNetFail) {
             } else {
               ins.bid(i, {value: price.toNumber()}, (err, tx) => {
                 if(err) {
-                  reject(err)
+                  return reject(err)
                 } else {
-                  resolve(tx)
+                  return resolve(tx)
                 }
               })
             }
@@ -157,12 +157,109 @@ var ethereum = function(onNetFail) {
         })        
       })
     }
+
+    let cancalAuction = function(_i) {
+      let i = parseInt(_i)
+      getContractIns
+      .then(ins => {
+        return new Promise((resolve, reject) => {
+          ins.cancelAuction(i, (err, tx) => {
+            if(err) {
+              return reject(err)
+            } else {
+              return resolve(tx)
+            }
+          })
+        })        
+      })
+    }
+
+    let sellToken = function(_i) {
+      let i = parseInt(_i)
+      getContractIns
+      .then(ins => {
+        return new Promise((resolve, reject) => {
+          ins.auction(i, (err, tx) => {
+            if(err) {
+              return reject(err)
+            } else {
+              return resolve(tx)
+            }
+          })
+        })        
+      })
+    }
+
+    let reproducable = function(_i) {
+      let i = parseInt(_i)
+      getContractIns
+      .then(ins => {
+        return new Promise((resolve, reject) => {
+          ins.available(i, (err, results) => {
+            if(err) {
+              return reject(err)
+            } else if(results.length > 0) {
+              return resolve(true)
+            } else {
+              return resolve(false)
+            }
+          })
+        })        
+      })
+    }
+
+    let waitTx = function(_tx, _times) {
+      let times = 10
+      if(_times) {
+        times = _times
+      }
+      let waitCnt = 0
+      return getWeb3
+      .then(ethereum => {
+        return new Promise((resolve, reject) => {
+          const waitTx = setInterval(
+            () => {
+              ethereum.web3.eth.getTransaction(txId, (err, tx) => {
+                if (err) {
+                  clearInterval(waitTx)
+                  reject(err)
+                } else {
+                  if (tx.blockNumber) {
+                    clearInterval(waitTx)
+                    ethereum.web3.eth.getTransactionReceipt(txId, (err, tx) => {
+                      if (err) {
+                        reject(err)
+                      } else {
+                        resolve(tx)
+                      }
+                    })
+                  } else {
+                    // pending
+                    waitCnt++
+                    if (waitCnt > times) {
+                      clearInterval(waitTx)
+                      reject(`wait for ${txId} too long`)
+                    }
+                  }
+                }
+              })
+            },
+            20000
+          )
+        })
+      })
+    }
+
     return {
       getWeb3,
       getContractIns,
       config,
+      waitTx,
       getPriceWithFloor,
-      buyToken
+      buyToken,
+      sellToken,
+      cancalAuction,
+      reproducable
     }
 };
 
