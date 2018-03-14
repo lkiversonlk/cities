@@ -29,8 +29,8 @@ function Tool(maxLv) {
   }
 
   self.fromGooleToLonLat = function(_lat, _lon, _lv) {
-    let lon = (_lon + 180).toFixed(_lv);
-    let lat = (90 - _lat).toFixed(_lv);
+    let lon = (parseFloat(_lon) + 180).toFixed(_lv);
+    let lat = (90 - parseFloat(_lat)).toFixed(_lv);
     return {lat, lon, lv: _lv};
   }
 

@@ -82,11 +82,14 @@ router.get('/mytokens/:address', (req, res) => {
             if(err) {
               return next(err)
             } else {
-              ins.positions(i, (err, token) => {
+              id = id.toNumber()
+              ins.positions(id, (err, token) => {
                 if(err) {
                   return next(err)
                 } else {
-                  return next(null, {i, token})
+                  let owner = token[0]
+                  let price = token[1].toNumber()
+                  return next(null, {id, owner, price})
                 }
               });
             }
@@ -97,11 +100,11 @@ router.get('/mytokens/:address', (req, res) => {
             res.sendStatus(500);
           } else {
             let tool = req.app.get("tool");
-            let data = tokens.map(t => {
-              let id = t.i
-              return tool.fromIdToGoogle(id)
+            let _data = tokens.map(t => {
+              let id = t.id
+              return Object.assign(tool.fromIdToGoogle(id), {id})
             });
-            return res.render('mytokens', data);
+            return res.render('mytokens', {tokens: _data});
           }
         }
       )

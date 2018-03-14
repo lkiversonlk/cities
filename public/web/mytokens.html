@@ -230,23 +230,19 @@
 		    -->
         </div>
 
- 		<div class="c-content-title-2">
-			<h3 class="c-center c-font-dark">You don't have any Citiestoken.</h3>
-			<p class="c-center">You can find some Citiestoken in the <a href="marketplace.html">Marketplace</a>  </p>
-		</div>	
+ 			
 
         <div id="grid-container" class="cbp cbp-l-grid-agency"> 
-			{{#each listTokens}}
 			{{#each tokens}}
-				<div class="cbp-item {{{../city}}}">
+				<div class="cbp-item ">
 					<a href="#" target="_blank" >
 						<div class="c-content-product-2 c-bg-white">
 						<div class="c-content-overlay">
-							<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">{{{../cityName}}}</div>
-							<div name="price" e-id="{{{id}}}" class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">loading...</div>
+							<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold"></div>
+							<div name="price" e-id="{{{G2Id lat lon lv}}}" class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">loading...</div>
 							<div class="c-overlay-wrapper">
 								<div class="c-overlay-content">
-									<a href="/details/{{{G2Id lat lon lv}}}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Buy</a>
+									<a name="action" e-id="{{{G2Id lat lon lv}}}" href="/details/{{{G2Id lat lon lv}}}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Loading</a>									
 								</div>
 							</div>
 							<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url({{{gmap lat lon}}});"></div>
@@ -254,90 +250,10 @@
 	
 						</div>
 						<div class="cbp-l-grid-agency-title">GeoID:({{{lat}}}, {{{lon}}})</div>
-						<div class="cbp-l-grid-agency-desc">Reproducible - Fast</div>
+						<div e-id="{{{G2Id lat lon lv}}}" name='reproducible' class="cbp-l-grid-agency-desc">Loading...</div>
 					</a>
 				</div>
-				{{/each}}
 			{{/each}}
-			<!--
-            <div class="cbp-item newyork">
-                <a href="#" target="_blank" >
-                    <div class="c-content-product-2 c-bg-white">
-					<div class="c-content-overlay">
-						<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">New York</div>
-						<div class="c-overlay-wrapper">
-							<div class="c-overlay-content">
-								<a href="sell.html" class="btn btn-md c-btn-grey-1 c-btn-bold c-btn-border-1x c-btn-square">Cancel</a>
-								<a href="reproduce.html" class="btn btn-md c-btn-grey-1 c-btn-bold c-btn-border-1x c-btn-square">Reproduce</a>
-							</div>
-						</div>
-						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=40.7195,-73.9990&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C40.7195,-73.9990&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
-					</div>
-
-                    </div>
-                    <div class="cbp-l-grid-agency-title">GeoID:{40.7195,-73.9990}</div>
-                    <div class="cbp-l-grid-agency-desc">Reproducible - Fast</div>
-                </a>
-			</div>
-			
-
-            <div class="cbp-item tokyo">
-                <a href="#" target="_blank">
-                    <div class="c-content-product-2 c-bg-white">
-					<div class="c-content-overlay">
-						<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">Tokyo</div>
-						<div class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">0.2 ETH</div>
-						<div class="c-overlay-wrapper">
-							<div class="c-overlay-content">
-								<a href="#" class="btn btn-md c-btn-grey-1 c-btn-bold c-btn-border-1x c-btn-square">Sell</a>
-								<a href="#" class="btn btn-md c-btn-grey-1 c-btn-bold c-btn-border-1x c-btn-square">Reproduce</a>
-							</div>
-						</div>
-						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=35.7155,139.7760&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C35.7155,139.7760&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
-					</div>
-
-                    </div>
-                    <div class="cbp-l-grid-agency-title">GeoID:{35.7155,139.7760}</div>
-                    <div class="cbp-l-grid-agency-desc">Reproduce - Slow</div>
-                </a>
-            </div>
-            <div class="cbp-item losangeles">
-                <a href="#" target="_blank">
-                    <div class="c-content-product-2 c-bg-white">
-					<div class="c-content-overlay">
-						<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">Los Angeles</div>
-						<div class="c-overlay-wrapper">
-							<div class="c-overlay-content">
-								<a href="#" class="btn btn-md c-btn-grey-1 c-btn-bold c-btn-border-1x c-btn-square">Reproduce</a>
-							</div>
-						</div>
-						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=34.0400,-118.2565&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C34.0400,-118.2565&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
-					</div>
-
-                    </div>
-                    <div class="cbp-l-grid-agency-title">GeoID:{34.0400,-118.2565}</div>
-                    <div class="cbp-l-grid-agency-desc">Reproducible - Fast</div>
-                </a>
-            </div>
-            <div class="cbp-item seoul">
-                <a href="#" target="_blank">
-                    <div class="c-content-product-2 c-bg-white">
-					<div class="c-content-overlay">
-						<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">Seoul</div>
-						<div class="c-overlay-wrapper">
-							<div class="c-overlay-content">
-								<a href="sell.html" class="btn btn-md c-btn-grey-1 c-btn-bold c-btn-border-1x c-btn-square">Sell</a>
-							</div>
-						</div>
-						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url(https://maps.googleapis.com/maps/api/staticmap?center=37.5595,126.9790&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C37.5595,126.9790&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A);"></div>
-					</div>
-
-                    </div>
-                    <div class="cbp-l-grid-agency-title">GeoID:{37.5595,126.9790}</div>
-                    <div class="cbp-l-grid-agency-desc c-font-red">UnReproducible</div>
-                </a>
-			</div>
-		    -->
         </div>
 
         <div id="loadMore-container" class="cbp-l-loadMore-button c-margin-t-60">

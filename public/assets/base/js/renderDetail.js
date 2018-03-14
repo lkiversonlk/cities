@@ -46,6 +46,29 @@ if(ele) {
       break;
     }
   })
+
+  $('#buy').click(() => {
+    ether.buyToken(id)
+    .then(tx=>{
+      console.log(tx)
+    })
+  })
+
+  $("#unsell").click(() => {
+    ether.cancelAuction(id)
+    .then(tx => {
+      console.log(tx)
+    })
+  })
+
+  $("#sell").click(() => {
+    ether.sellToken(id)
+    .then(tx => {
+      console.log(tx)
+    })
+  })
+
+  
 }
 
 
