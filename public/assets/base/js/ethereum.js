@@ -158,7 +158,7 @@ var ethereum = function(onNetFail) {
       })
     }
 
-    let cancalAuction = function(_i) {
+    let cancelAuction = function(_i) {
       let i = parseInt(_i)
       getContractIns
       .then(ins => {
@@ -249,6 +249,29 @@ var ethereum = function(onNetFail) {
       })
     }
 
+    let reproduce = function(_i) {
+      return getContractIns
+      .then(ins => {
+        return new Promise((resolve, reject) => {
+          ins.positions(_i, (err, _pos) => {
+            if(err) {
+              reject(err)
+            } else {
+              let price = _pos[1].toNumber() / 2 + 100000
+              ins.reproduce(_i, {value: price}, (err, tx) => {
+                if(err) {
+                  reject(err)
+                } else {
+                  resolve(tx)
+                }
+              })
+            }
+          })
+        })
+        
+      })
+    }
+
     let waitTx = function(_tx, _times) {
       let times = 10
       if(_times) {
@@ -299,9 +322,10 @@ var ethereum = function(onNetFail) {
       getPriceWithFloor,
       buyToken,
       sellToken,
-      cancalAuction,
+      cancelAuction,
       reproducable,
-      stage
+      stage,
+      reproduce
     }
 };
 

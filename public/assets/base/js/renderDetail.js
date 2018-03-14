@@ -45,6 +45,15 @@ if(ele) {
       case 'Hold':
       break;
     }
+
+    ether.reproducable(id)
+    .then(_reproducable => {
+      if(_reproducable) {
+        if(_state === 'Yours' || _state === 'Sell') {
+          $("#reproduce").show()
+        }
+      }
+    })
   })
 
   $('#buy').click(() => {
@@ -68,7 +77,12 @@ if(ele) {
     })
   })
 
-  
+  $("#reproduce").click(() => {
+    ether.reproduce(id)
+    .then(tx => {
+      console.log(tx)
+    })
+  })
 }
 
 
