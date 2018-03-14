@@ -192,7 +192,7 @@ var ethereum = function(onNetFail) {
 
     let reproducable = function(_i) {
       let i = parseInt(_i)
-      getContractIns
+      return getContractIns
       .then(ins => {
         return new Promise((resolve, reject) => {
           ins.available(i, (err, results) => {

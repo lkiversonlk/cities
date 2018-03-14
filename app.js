@@ -38,7 +38,7 @@ ins.maxLv((err, lv) => {
     app.set("tool", _tool);
 
     app.set('views', path.join(__dirname, 'public/web'));
-
+  
     app.engine('.html', exphbs({
       extname: ".html",
       helpers: {
@@ -53,6 +53,9 @@ ins.maxLv((err, lv) => {
         },
         gmapBanner: function(lat, lon) {
           return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lon}&zoom=18&size=640x200&scale=2&maptype=roadmap&markers=color:blue%7Clabel:C%7C${lat},${lon}&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A`
+        },
+        transLv : function(lv) {
+
         }
       }
     }));
@@ -61,6 +64,7 @@ ins.maxLv((err, lv) => {
   }
 });
 var app = express();
+app.set('web3', web3);
 app.set('ins', ins);
 // view engine setup
 app.use(express.static(path.join(__dirname, 'public')));

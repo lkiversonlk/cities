@@ -49,6 +49,13 @@ function Tool(maxLv) {
     let {lat, lon, lv} = self.fromGooleToLonLat(_lat, _lon, _lv);
     return self.fromLonLatToId(lat, lon, lv);
   }
+
+  let lvM = {
+    1: 'A',
+    2: 'B',
+    3: 'C',
+    4: 'D'
+  }
 }
 
 if(typeof module !== 'undefined') {

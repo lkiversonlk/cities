@@ -46,6 +46,18 @@ function render() {
       $(ele).text(`${price} ETH`);
     })
   });
+
+  $('#grid-container [name="reproducible"]').each((i, ele) => {
+    let id = ele.getAttribute('e-id');
+    ether.reproducable(id)
+    .then(result => {
+      if(result) {
+        $(ele).text('Reproducible')
+      } else {
+        $(ele).text('Unreproducible');
+      }
+    })
+  })
 }
 
 render();
