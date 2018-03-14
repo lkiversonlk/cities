@@ -33,26 +33,43 @@ ether
   alert(err);
 })*/
 
-$('#grid-container [name="price"]').each((i, ele) => {
-  let id = ele.getAttribute('e-id');
-  ether.getPriceWithFloor(id)
-  .then(price => {
-    $(ele).text(`${price} ETH`);
-  })
-});
+function render() {
+  $('#grid-container [name="price"]').each((i, ele) => {
+    let id = ele.getAttribute('e-id');
+    ether.getPriceWithFloor(id)
+    .then(price => {
+      $(ele).text(`${price} ETH`);
+    })
+  });
+  
+  $('#grid-container [name="reproducible"]').each((i, ele) => {
+    let id = ele.getAttribute('e-id');
+    ether.reproducable(id)
+    .then(result => {
+      if(result) {
+        $(ele).text('Reproducible')
+      } else {
+        $(ele).text('Unreproducible');
+      }
+    })
+  });
 
-$('#grid-container [name="reproducible"]').each((i, ele) => {
-  let id = ele.getAttribute('e-id');
-  ether.reproducable(id)
-  .then(result => {
-    if(result) {
-      $(ele).text('Reproducible')
-    } else {
-      $(ele).text('Unreproducible');
-    }
-  })
-});
+  $('#grid-container [name="action"]').each((i, ele) => {
+    let id = ele.getAttribute('e-id');
+    ether.stage(id)
+    .then(result => {
+      if(result == 0) {
+        $(ele).text('Unsold')
+      } else if(result == 1) {
+        $(ele).text('Buy')
+      } else {
+        $(ele).text('Hold')
+      }
+    })
+  });
+}
 
+render();
 /*
 $.get("/assets/tpl/token.hbs", data => {
   let tpl = Handlebars.compile(data);

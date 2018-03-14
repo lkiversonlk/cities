@@ -64,7 +64,7 @@ router.get('/mytokens', (req, res) => {
 
 router.get('/mytokens/:address', (req, res) => {
   let web3 = req.app.get('web3')
-  if(web3.isAddress(req.params['address'])) {
+  if(!web3.isAddress(req.params['address'])) {
     return res.send(`${req.params['address']} is invalid`)
   }
   let ins = req.app.get('ins');

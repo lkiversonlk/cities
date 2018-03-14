@@ -208,6 +208,22 @@ var ethereum = function(onNetFail) {
       })
     }
 
+    let stage = function(_i) {
+      let i = parseInt(_i)
+      return getContractIns
+      .then(ins => {
+        return new Promise((resolve, reject) => {
+          ins.getStage(i, (err, result) => {
+            if(err) {
+              return reject(err)
+            } else {
+              return resolve(result)
+            }
+          })
+        })
+      })
+    }
+
     let waitTx = function(_tx, _times) {
       let times = 10
       if(_times) {
@@ -259,7 +275,8 @@ var ethereum = function(onNetFail) {
       buyToken,
       sellToken,
       cancalAuction,
-      reproducable
+      reproducable,
+      stage
     }
 };
 

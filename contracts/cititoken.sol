@@ -308,10 +308,10 @@ contract GeoAmoeba is AmoebaBase, ERC721{
         require(0 <= lv && lv < maxLv);
         
         require(0 <= lon && lon < maxLon);
-        require(lon % (10 ** lv) == 0);
+        require(lon % (10 ** (maxLv - lv - 1)) == 0);
         
         require(0 <= lat && lat < maxLat);
-        require(lat % (10 ** lv) == 0);
+        require(lat % (10 ** (maxLv - lv - 1)) == 0);
         
         return (lat, lon, lv);
     }
