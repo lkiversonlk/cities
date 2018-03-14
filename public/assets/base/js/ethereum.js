@@ -230,11 +230,15 @@ var ethereum = function(onNetFail) {
                   } else {
                     let _owner = token[0]
                     if(_owner == _address) {
-                      resolve("Yours")
+                      if(_stage == 2) {
+                        resolve("Yours")
+                      } else {
+                        resolve("Sell")
+                      }
                     } else if(_stage == 1){
                       resolve("Buy")
                     } else {
-                      resolve("Holding")
+                      resolve("Hold")
                     }
                   }
                 })
