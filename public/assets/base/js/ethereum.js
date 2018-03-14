@@ -210,15 +210,36 @@ var ethereum = function(onNetFail) {
 
     let stage = function(_i) {
       let i = parseInt(_i)
-      return getContractIns
-      .then(ins => {
-        return new Promise((resolve, reject) => {
-          ins.getStage(i, (err, result) => {
-            if(err) {
-              return reject(err)
-            } else {
-              return resolve(result)
-            }
+      return getWeb3
+      .then(ethereum => {
+        return ethereum.address
+      })
+      .then(_address => {
+        return getContractIns
+        .then(ins => {
+          return new Promise((resolve, reject) => {
+            ins.getStage(i, (err, _stage) => {
+              if(err) {
+                return reject(err)
+              } else if(_stage == 0) {
+                resolve("Unsold")
+              } else {
+                ins.positions(i, (err, token) => {
+                  if(err) {
+                    reject(err)
+                  } else {
+                    let _owner = token[0]
+                    if(_owner == _address) {
+                      resolve("Yours")
+                    } else if(_stage == 1){
+                      resolve("Buy")
+                    } else {
+                      resolve("Holding")
+                    }
+                  }
+                })
+              }
+            })
           })
         })
       })

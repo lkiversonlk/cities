@@ -58,13 +58,7 @@ function render() {
     let id = ele.getAttribute('e-id');
     ether.stage(id)
     .then(result => {
-      if(result == 0) {
-        $(ele).text('Unsold')
-      } else if(result == 1) {
-        $(ele).text('Buy')
-      } else {
-        $(ele).text('Hold')
-      }
+      $(ele).text(result)
     })
   });
 }
