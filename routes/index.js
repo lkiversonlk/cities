@@ -27,7 +27,7 @@ router.get("/details/:id", (req, res) => {
 })
 
 router.get("/marketplace", (req, res) => {
-  return res.render('marketplace', data.getData());
+  return res.render('marketplace', data.getData())
   /*
   let tool = req.app.get("tool");
   let id = parseInt(req.params['id']);
@@ -110,6 +110,10 @@ router.get('/mytokens/:address', (req, res) => {
       )
     }
   });
+});
+
+router.get('/admin', (req, res) => {
+  return res.render('admin', data.getData())
 });
 
 module.exports = router;

@@ -35,7 +35,7 @@ ether
 
 function render() {
   $('#grid-container [name="price"]').each((i, ele) => {
-    let id = ele.getAttribute('e-id');
+    let id = ele.getAttribute('e-id')
     ether.getPriceWithFloor(id)
     .then(price => {
       $(ele).text(`${price} ETH`);
@@ -43,13 +43,13 @@ function render() {
   });
   
   $('#grid-container [name="reproducible"]').each((i, ele) => {
-    let id = ele.getAttribute('e-id');
+    let id = ele.getAttribute('e-id')
     ether.reproducable(id)
     .then(result => {
       if(result) {
         $(ele).text('Reproducible')
       } else {
-        $(ele).text('Unreproducible');
+        $(ele).text('Unreproducible')
       }
     })
   });

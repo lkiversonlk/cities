@@ -630,6 +630,13 @@ contract AuctionAmoeba is GeoAmoeba {
         _createAuction(i, _sprice, _eprice, uint256(30 days), address(this));
     }
     
+    function produce_batch(uint256[] ids, uint256 _sprice, uint256 _eprice) public onlyAdmin whenNotPaused {
+        uint i = 0;
+        for(; i < ids.length; i ++) {
+            produce(ids[i], _sprice, _eprice);
+        }
+    }
+    
     ////////////////////////ERC721////////////////////////////////////////////////////////
     
     //transfer just change the owner  and seller
