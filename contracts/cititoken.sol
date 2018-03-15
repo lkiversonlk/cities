@@ -671,6 +671,7 @@ contract AuctionAmoeba is GeoAmoeba {
         earned[this] += fee;
         msg.sender.transfer(msg.value - fee);
         
+        j = _ava[j];
         _createToken(j, msg.sender, price);
         auction(j);
     }
