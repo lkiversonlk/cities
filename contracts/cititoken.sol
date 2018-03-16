@@ -224,6 +224,13 @@ contract GeoAmoeba is AmoebaBase, ERC721{
     }
     
     /**************** functions **********************************************************/
+    function _owned(uint256 i) internal view returns (bool) {
+        if(positions[i].owner == address(0)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     ////////////      ERC 721   //////////////////
     function totalSupply() public view returns (uint256) {
@@ -250,7 +257,7 @@ contract GeoAmoeba is AmoebaBase, ERC721{
     {
         _approve(_pos_id, _to);
     }
-    
+
     function transfer(address _to, uint256 _pos_id) public tokenOwner(_pos_id)
     {
         revert();
@@ -332,22 +339,51 @@ contract GeoAmoeba is AmoebaBase, ERC721{
         
         uint256[] memory ret = new uint256[](8);
         uint j = 0;
-        
+        uint256 tmp;
         if (lat >= (10 ** (maxLv - lv - 1))) {
             uint256 latN = (lat - 10 ** (maxLv - lv - 1));
-            ret[j++] = _fromLatLon(latN, lonL, lv);
-            ret[j++] = _fromLatLon(latN, lon, lv);
-            ret[j++] = _fromLatLon(latN, lonR, lv);
+            tmp = _fromLatLon(latN, lonL, lv);
+            if (!_owned(tmp)) {
+                ret[j++] = tmp;
+            }
+            
+            tmp = _fromLatLon(latN, lon, lv);
+            if (!_owned(tmp)) {
+                ret[j++] = tmp;
+            }
+
+            tmp = _fromLatLon(latN, lonR, lv);
+            if (!_owned(tmp)) {
+                ret[j++] = tmp;
+            }
         }
         
-        ret[j++] = _fromLatLon(lat, lonL, lv);
-        ret[j++] = _fromLatLon(lat, lonR, lv);
+        tmp = _fromLatLon(lat, lonL, lv);
+        if (!_owned(tmp)) {
+            ret[j++] = tmp;
+        }
+
+        tmp = _fromLatLon(lat, lonR, lv);
+        if (!_owned(tmp)) {
+            ret[j++] = tmp;
+        }
         
         if (lat < maxLat - (10 ** (maxLv - lv - 1))){
             uint256 latS = lat + 10 ** (maxLv - lv - 1);
-            ret[j++] = _fromLatLon(latS, lonL, lv);
-            ret[j++] = _fromLatLon(latS, lon, lv);
-            ret[j++] = _fromLatLon(latS, lonR, lv);
+            tmp = _fromLatLon(latS, lonL, lv);
+            if (!_owned(tmp)) {
+                ret[j++] = tmp;
+            }
+
+            tmp = _fromLatLon(latS, lon, lv);
+            if (!_owned(tmp)) {
+                ret[j++] = tmp;
+            }
+
+            tmp = _fromLatLon(latS, lonR, lv);
+            if (!_owned(tmp)) {
+                ret[j++] = tmp;
+            }
         }
         return (ret, j);
     }
