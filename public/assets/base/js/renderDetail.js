@@ -42,10 +42,7 @@ ether
 let ele = $('#buysell span[name="price"]')[0];
 if(ele) {
   let id = ele.getAttribute('e-id');
-  ether.getPriceWithFloor(id)
-  .then(price => {
-    $(ele).text(`${price} ETH`);
-  })
+  
 
   id = parseInt(id)
   ether.stage(id)
@@ -53,6 +50,7 @@ if(ele) {
     switch(_state) {
       case 'Unsold':
       //do nothing
+      $(ele).text(`Not for Sale`)
       break;
       case 'Yours':
       $("#sell").show()
@@ -65,6 +63,13 @@ if(ele) {
       break;
       case 'Hold':
       break;
+    }
+
+    if(_state !== 'Unsold') {
+      ether.getPriceWithFloor(id)
+        .then(price => {
+          $(ele).text(`${price} ETH`);
+        })
     }
 
     ether.reproducable(id)
@@ -98,12 +103,13 @@ if(ele) {
     })
   })
 
+  /*
   $("#reproduce").click(() => {
     ether.reproduce(id)
     .then(tx => {
       console.log(tx)
     })
-  })
+  })*/
 }
 
 

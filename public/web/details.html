@@ -98,13 +98,11 @@
 				<li class="c-search-toggler-wrapper">
 			<a  href="#" class="c-btn-icon c-search-toggler"><i class="fa fa-search"></i></a>
 		</li>
-		
-				<li>
-			<a href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i> Sign In</a>
-		</li>
-		
-		
-		
+		<li>
+				<!-- <a href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i> Sign In</a> -->
+				<a href="javascript:;" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i><span id='user'>Sign In</span></a>
+			</li>
+
 			</ul>
 </nav>
 <!-- END: MEGA MENU --><!-- END: LAYOUT/HEADERS/MEGA-MENU -->
@@ -202,13 +200,15 @@
 <div class="c-content-box c-size-md c-bg-white">
 	<div id="buysell" class="container" style="width:70%">
 		<div class="c-content-title-2">
-			<h3 class="c-center c-font-dark">GeoID:{ {{{lat}}},{{{lon}}} }, Lv {{{lv}}}</h3>
+			<h3 class="c-center c-font-dark">GeoID:{ {{{lat}}},{{{lon}}} }, {{{transLv lv}}}</h3>
 			<p class="c-center">Tokyo | Token#:{{{id}}} |  <span class="c-content-label c-font-bold c-bg-green">Price: <span name="price" e-id={{{id}}}>loading...</span></span></p>
 			
-			<div class="c-center" id="buy" style="display:none"><a class="btn btn-xlg c-btn-yellow c-btn-circle">Buy This Token</a></div>
-			<div class="c-center" id="sell" style="display:none"><a class="btn btn-xlg c-btn-yellow c-btn-circle">Sell This Token</a></div>
-			<div class="c-center" id="unsell" style="display:none"><a class="btn btn-xlg c-btn-yellow c-btn-circle">Unsell This Token</a></div>
-			<div class="c-center" id="reproduce" style="display:none"><a class="btn btn-xlg c-btn-yellow c-btn-circle">Reproduce</a></div>
+			<div class="c-center">
+				<a  id="buy" style="display:none" class="btn btn-xlg c-btn-yellow c-btn-circle">Buy</a>
+				<a id="sell" style="display:none" class="btn btn-xlg c-btn-yellow c-btn-circle">Start Selling</a>
+				<a id="unsell" style="display:none" class="btn btn-xlg c-btn-yellow c-btn-circle">Stop Selling</a>
+				<a id="reproduce" href="/reproduce/{{{id}}}" style="display:none" class="btn btn-xlg c-btn-blue c-btn-circle">Reproduce</a>
+			</div>
 		</div>	
 			
 		<!--
