@@ -98,9 +98,10 @@
 			<a  href="#" class="c-btn-icon c-search-toggler"><i class="fa fa-search"></i></a>
 		</li>
 		
-				<li>
-			<a href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i> Sign In</a>
-		</li>
+		<li>
+				<!-- <a href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i> Sign In</a> -->
+				<a href="javascript:;" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i><span id='user'>Sign In</span></a>
+			</li>
 		
 		
 		
@@ -221,14 +222,13 @@
 							<div class="form-group">
 							   	<label for="inputEmail3-88" class="col-md-4 control-label">Reproduce Cost</label>
 							   	<div class="col-md-6">
-							   		<input id="reproduce-cost" type="text" class="form-control  c-square c-border-2px c-theme" readonly id="inputEmail3-88" placeholder="loading...">
+							   		<input id="reproduce-cost" e-id={{{id}}} type="text" class="form-control  c-square c-border-2px c-theme" readonly id="inputEmail3-88" placeholder="loading...">
 							  	</div>
 							</div>
 							
 							<div class="form-group c-margin-t-40">
 							   	<div class="col-sm-offset-4 col-md-8">
-							   		<button e-id={{{id}}} id="reproduce" type="submit" class="btn c-theme-btn c-btn-square c-btn-bold">Reproduce</button> 
-							   		<button type="submit" class="btn btn-default c-btn-square c-btn-bold">Cancel</button>
+							   		<button e-id={{{id}}} id="reproduce" class="btn c-theme-btn c-btn-square c-btn-bold">Reproduce</button> 
 							  	</div>
 							</div>
 							<div class="form-group c-margin-t-40">

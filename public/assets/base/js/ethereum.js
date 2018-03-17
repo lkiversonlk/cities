@@ -261,7 +261,7 @@ var ethereum = function(onNetFail) {
               resolve(
                 getWeb3
                 .then(ethereum => {
-                  return ethereum.web.fromWei(price)
+                  return ethereum.web3.fromWei(price)
                 })
               )
             }
@@ -346,6 +346,7 @@ var ethereum = function(onNetFail) {
       cancelAuction,
       reproducable,
       stage,
+      reproduceCost,
       reproduce
     }
 };

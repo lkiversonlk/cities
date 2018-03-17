@@ -75,10 +75,10 @@ function Tool(maxLv) {
   }
 
   let lvM = {
-    1: 'Level-A',
-    2: 'Level-B',
-    3: 'Level-C',
-    4: 'Level-D'
+    1: 'A-Level',
+    2: 'B-Level',
+    3: 'C-Level',
+    4: 'D-Level'
   }
 
   self.transLv = (lv) => {

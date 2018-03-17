@@ -96,12 +96,13 @@ if(ele) {
     })
   })
 
+  /*
   $("#sell").click(() => {
     ether.sellToken(id)
     .then(tx => {
       console.log(tx)
     })
-  })
+  })*/
 
   /*
   $("#reproduce").click(() => {
