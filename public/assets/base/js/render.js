@@ -38,7 +38,7 @@ ether
 .then(ethereum =>{
   return ether.config
   .then(() => {
-    $('#user').text(`Wallet: ${ethereum.address.slice(0,6)}...`)
+    $('#user').text(`Wallet: ${ethereum.address.slice(0,10)}...`)
   })
 })
 .catch((err) => {
