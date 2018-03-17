@@ -104,7 +104,7 @@ router.get('/mytokens/:address', (req, res) => {
               let id = t.id
               return Object.assign(tool.fromIdToGoogle(id), {id})
             });
-            return res.render('mytokens', {tokens: _data});
+            return res.render('mytokens', {tokens: _data, address});
           }
         }
       )
