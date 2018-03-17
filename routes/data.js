@@ -8,12 +8,19 @@ const rl = readline.createInterface({
 let tokens = []
 let cities = {}
 
+let levels = {
+  1: 'Level-A',
+  2: 'Level-B',
+  3: 'Level-C',
+  4: 'Level-D'
+}
+
 rl.on('line', (line) => {
   let _dat = line.split(',')
   if(_dat.length == 5) {
     try{
-      let lat = parseFloat(_dat[0])
-      let lon = parseFloat(_dat[1])
+      let lat = parseFloat(_dat[0]).toFixed(4)
+      let lon = parseFloat(_dat[1]).toFixed(4)
       let lv = parseInt(_dat[2])
       let city = _dat[3].trim()
       let cityName = _dat[4].trim()
@@ -28,5 +35,5 @@ rl.on('line', (line) => {
 })
 
 exports.getData = () => {
-  return {cities, tokens};
+  return {cities, tokens, levels};
 }

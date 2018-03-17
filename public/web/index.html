@@ -306,8 +306,8 @@
             <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">
                 All <div class="cbp-filter-counter"></div>
 			</div> /
-				{{#each cities}}
-				<div data-filter=".{{{@key}}}" class="cbp-filter-item">
+				{{#each levels}}
+				<div data-filter=".lv{{{@key}}}" class="cbp-filter-item">
 						{{{this}}} <div class="cbp-filter-counter"></div>
 				</div> /
 				{{/each}}
@@ -315,7 +315,7 @@
 		
         <div id="grid-container" class="cbp cbp-l-grid-agency"> 
 					{{#each tokens}}
-						<div class="cbp-item {{{city}}}">
+						<div class="cbp-item lv{{{lv}}}">
 							<a href="#" target="_blank" >
 								<div class="c-content-product-2 c-bg-white">
 								<div class="c-content-overlay">
