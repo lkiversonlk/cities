@@ -55,7 +55,7 @@ ins.maxLv((err, lv) => {
           return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lon}&zoom=18&size=640x200&scale=2&maptype=roadmap&markers=color:blue%7Clabel:C%7C${lat},${lon}&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A`
         },
         transLv : function(lv) {
-
+          return _tool.transLv(lv)
         }
       }
     }));

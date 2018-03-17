@@ -1,0 +1,93 @@
+/*
+let ether = ethereum((err) => {
+  alert(err);
+})
+
+let web3;
+
+ether
+.getWeb3
+.then(_ethereum => {
+  web3 = _ethereum.web3;
+  return ether;
+})
+.then(_ether => {
+  return _ether.getContractIns;
+})
+.catch(err => {
+  alert(err);
+})*/
+
+let ele = $('#reproduce-cost')[0]
+
+if(ele) {
+  let id = ele.getAttribute('e-id');
+  ether.reproduceCost(id)
+  .then(price => {
+    $(ele).text(`${price} ETH`);
+  })
+
+  id = parseInt(id)
+  ether.stage(id)
+  .then((_state) => {
+    switch(_state) {
+      case 'Unsold':
+      //do nothing
+      break;
+      case 'Yours':
+      $("#sell").show()
+      break;
+      case 'Sell':
+      $("#unsell").show()
+      break;
+      case 'Buy':
+      $('#buy').show()
+      break;
+      case 'Hold':
+      break;
+    }
+
+    ether.reproducable(id)
+    .then(_reproducable => {
+      if(_reproducable) {
+        if(_state === 'Yours' || _state === 'Sell') {
+          $("#reproduce").show()
+        }
+      }
+    })
+  })
+
+  $('#buy').click(() => {
+    ether.buyToken(id)
+    .then(tx=>{
+      console.log(tx)
+    })
+  })
+
+  $("#unsell").click(() => {
+    ether.cancelAuction(id)
+    .then(tx => {
+      console.log(tx)
+    })
+  })
+
+  $("#sell").click(() => {
+    ether.sellToken(id)
+    .then(tx => {
+      console.log(tx)
+    })
+  })
+
+  $("#reproduce").click(() => {
+    ether.reproduce(id)
+    .then(tx => {
+      console.log(tx)
+    })
+  })
+}
+
+
+
+
+
+// renderPage();

@@ -97,13 +97,10 @@
 				<li class="c-search-toggler-wrapper">
 			<a  href="#" class="c-btn-icon c-search-toggler"><i class="fa fa-search"></i></a>
 		</li>
-		
-				<li>
-			<a style="display: none;" href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i> Sign In</a>
+		<li>
+			<!-- <a href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i> Sign In</a> -->
+			<a href="javascript:;" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i><span id='user'>Sign In</span></a>
 		</li>
-		
-		
-		
 			</ul>
 </nav>
 <!-- END: MEGA MENU --><!-- END: LAYOUT/HEADERS/MEGA-MENU -->
@@ -203,8 +200,8 @@
 </div>
 <!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
 		<!-- BEGIN: PAGE CONTENT -->
-		<div class="c-content-box c-size-md">
-	<div class="container">
+<div class="c-content-box c-size-md">
+	<div id='mytoken-wrapper' class="container">
  
         <div id="filters-container" class="cbp-l-filters-text">
             <div class="cbp-l-filters-text-sort">Sort by:</div>
@@ -230,7 +227,7 @@
 		    -->
         </div>
 
- 			
+
 
         <div id="grid-container" class="cbp cbp-l-grid-agency"> 
 			{{#each tokens}}
@@ -250,9 +247,17 @@
 	
 						</div>
 						<div class="cbp-l-grid-agency-title">GeoID:({{{lat}}}, {{{lon}}})</div>
-						<div e-id="{{{G2Id lat lon lv}}}" name='reproducible' class="cbp-l-grid-agency-desc">Loading...</div>
+						<div class="cbp-l-grid-agency-desc">
+							<span e-id="{{{G2Id lat lon lv}}}" name='reproducible' >Loading...</span>
+							-- <span>{{{transLv lv}}}</span>
+						</div>
 					</a>
 				</div>
+			{{else}}
+			<div class="c-content-title-2">
+				<h3 class="c-center c-font-dark">You don't have any Citiestoken.</h3>
+				<p class="c-center">You can find some Citiestoken in the <a href="/marketplace">Marketplace</a>  </p>
+			</div>	
 			{{/each}}
         </div>
 

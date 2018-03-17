@@ -45,7 +45,7 @@
 			<!-- BEGIN: BRAND -->
 			<div class="c-navbar-wrapper clearfix">
 				<div class="c-brand c-pull-left">
-					<a href="index.html" class="c-logo">
+					<a href="/" class="c-logo">
 						<img src="../assets/base/img/layout/logos/logo.png" alt="CitiesToken" class="c-desktop-logo">
 						<img src="../assets/base/img/layout/logos/logo.png" alt="CitiesToken" class="c-desktop-logo-inverse">
 						<img src="../assets/base/img/layout/logos/logo.png" alt="CitiesToken" class="c-mobile-logo">
@@ -79,17 +79,17 @@
 <nav class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-bold">
 	<ul class="nav navbar-nav c-theme-nav"> 
 						<li >
-						<a href="index.html" class="c-link dropdown-toggle">Home<span class="c-arrow c-toggler"></span></a>
+						<a href="/" class="c-link dropdown-toggle">Home<span class="c-arrow c-toggler"></span></a>
 					</li>
 						<li>
-						<a href="marketplace.html" class="c-link dropdown-toggle">Marketplace<span class="c-arrow c-toggler"></span></a>
+						<a href="/marketplace" class="c-link dropdown-toggle">Marketplace<span class="c-arrow c-toggler"></span></a>
 					</li>
 						<li >
-						<a href="faq.html" class="c-link dropdown-toggle">FAQ<span class="c-arrow c-toggler"></span></a>
+						<a href="/faq" class="c-link dropdown-toggle">FAQ<span class="c-arrow c-toggler"></span></a>
 												
 					</li>
 						<li  class="c-active">
-						<a href="mytokens.html" class="c-link dropdown-toggle">MyTokens<span class="c-arrow c-toggler"></span></a>
+						<a href="/mytokens" class="c-link dropdown-toggle">MyTokens<span class="c-arrow c-toggler"></span></a>
 										
 					</li>
 		
@@ -133,8 +133,8 @@
 <div class="c-content-box c-size-md c-bg-white">
 	<div class="container" style="width:70%">
 		<div class="c-content-title-2">
-			<h3 class="c-center c-font-dark">GeoID:{35.7155,139.7760}</h3>
-			<p class="c-center">Tokyo | Token#:3887756  |  Reproduce - Fast </p>
+			<h3 class="c-center c-font-dark">GeoID:{ {{{lat}}},{{{lon}}} }, {{{lv}}}</h3>
+			<p class="c-center">Tokyo | Token#:{{{id}}}  |  <span id="reproducable">loading...</span></p>
 		</div>	
 			
 				<div class="c-content-panel">
@@ -147,13 +147,13 @@
 							<div class="form-group">
 							   	<label for="inputEmail3-88" class="col-md-4 control-label">Reproduce Cost</label>
 							   	<div class="col-md-6">
-							   		<input type="text" class="form-control  c-square c-border-2px c-theme" readonly id="inputEmail3-88" placeholder="0.01ETH">
+							   		<input id="reproduce-cost" type="text" class="form-control  c-square c-border-2px c-theme" readonly id="inputEmail3-88" placeholder="loading...">
 							  	</div>
 							</div>
 							
 							<div class="form-group c-margin-t-40">
 							   	<div class="col-sm-offset-4 col-md-8">
-							   		<button type="submit" class="btn c-theme-btn c-btn-square c-btn-bold">Reproduce</button> 
+							   		<button e-id={{{id}}} id="reproduce" type="submit" class="btn c-theme-btn c-btn-square c-btn-bold">Reproduce</button> 
 							   		<button type="submit" class="btn btn-default c-btn-square c-btn-bold">Cancel</button>
 							  	</div>
 							</div>
@@ -260,12 +260,14 @@
 	<!-- BEGIN: THEME SCRIPTS -->
 	<script src="../assets/base/js/components.js" type="text/javascript"></script>
 	<script src="../assets/base/js/components-shop.js" type="text/javascript"></script>
+	<script src="../assets/base/js/ethereum.js" type="text/javascript"></script>
 	<script src="../assets/base/js/app.js" type="text/javascript"></script>
 	<script>
 	$(document).ready(function() {    
 		App.init(); // init core    
 	});
 	</script>
+	<script src="../assets/base/js/renderReproduce.js"></script>
 	<!-- END: THEME SCRIPTS -->
 
 			<!-- BEGIN: PAGE SCRIPTS -->

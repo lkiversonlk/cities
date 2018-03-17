@@ -1,16 +1,36 @@
 let url = window.location.href;
 
-let ether = ethereum((err) => {
-  alert(err);
-})
+ether
+    .getWeb3
+    .then(ethereum =>{
+      return ether.config
+      .then(() => {
+        $('#user').text(`Wallet: ${ethereum.address.slice(0,6)}...`)
+      })
+    })
+    .catch((err) => {
+      switch(err) {
+        case 'WEB3MISS':
+          $('#login-form').modal('show')
+          break
+        case 'NOACCOUNT':
+          $('#locked-form').modal('show')
+          break
+        case 'NETWORKNOTSUPPORTED':
+          $('#user').text(`wrong network`)
+          alert('wrong network')
+      }
+    })
 
 if(url.slice(-8).indexOf("tokens") != -1) {
-
+  $('#mytoken-wrapper').html('<h1 class="center"> Loading Data... </h1>')
   //redirect
   ether.getWeb3.then(ethereum => {
     let addr = ethereum.address;
     window.location.href = `/mytokens/${addr}`; //relative to domain
   })
+} else {
+  
 }
 
 function render() {
@@ -18,6 +38,7 @@ function render() {
     let id = ele.getAttribute('e-id');
     ether.getPriceWithFloor(id)
     .then(price => {
+      price = parseFloat(price).toFixed(3)
       $(ele).text(`${price} ETH`);
     })
   });

@@ -50,11 +50,39 @@ function Tool(maxLv) {
     return self.fromLonLatToId(lat, lon, lv);
   }
 
+  self.isValidId = function(_id) {
+    if(typeof _id === 'string') {
+      _id = parseInt(_id)
+    }
+    
+    let lv = _id % self.lonOffset
+    if(lv >= self.maxLv) {
+      return false
+    }
+    let lon = Math.floor(_id % self.latOffset / self.lonOffset)
+    let lonMod = lon % Math.pow(10, (self.maxLv - lv - 1))
+    if(lonMod != 0) {
+      return false
+    }
+
+    let lat = Math.floor(_id / self.latOffset)
+    let latMod = lat % Math.pow(10, (self.maxLv - lv - 1))
+    if(latMod != 0) {
+      return false
+    }
+
+    return true
+  }
+
   let lvM = {
-    1: 'A',
-    2: 'B',
-    3: 'C',
-    4: 'D'
+    1: 'Level-A',
+    2: 'Level-B',
+    3: 'Level-C',
+    4: 'Level-D'
+  }
+
+  self.transLv = (lv) => {
+    return lvM[lv]
   }
 }
 

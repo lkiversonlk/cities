@@ -37,11 +37,44 @@ ether
 })
 */
 
+/**
+ * let errors = [
+      "WEB3MISS",
+      "SYSTEMERR",
+      "NOACCOUNT",
+      "UNKNOWNNETWORK",
+      "NETWORKNOTSUPPORTED"
+    ];
+ */
+
+ether
+.getWeb3
+.then(ethereum =>{
+  return ether.config
+  .then(() => {
+    $('#user').text(`Wallet: ${ethereum.address.slice(0,6)}...`)
+  })
+})
+.catch((err) => {
+  switch(err) {
+    case 'WEB3MISS':
+      $('#login-form').modal('show')
+      break
+    case 'NOACCOUNT':
+      $('#locked-form').modal('show')
+      break
+    case 'NETWORKNOTSUPPORTED':
+      $('#user').text(`wrong network`)
+      alert('wrong network')
+  }
+})
+
 function render() {
   $('#grid-container [name="price"]').each((i, ele) => {
     let id = ele.getAttribute('e-id');
     ether.getPriceWithFloor(id)
     .then(price => {
+      price = parseFloat(price).toFixed(3)
       $(ele).text(`${price} ETH`);
     })
   });

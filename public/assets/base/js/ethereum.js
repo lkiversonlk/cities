@@ -249,6 +249,27 @@ var ethereum = function(onNetFail) {
       })
     }
 
+    let reproduceCost = function(_i) {
+      return getContractIns
+      .then(ins => {
+        return new Promise((resolve, reject) => {
+          ins.positions(_i, (err, _pos) => {
+            if(err) {
+              reject(err)
+            } else {
+              let price = _pos[1].toNumber() / 2
+              resolve(
+                getWeb3
+                .then(ethereum => {
+                  return ethereum.web.fromWei(price)
+                })
+              )
+            }
+          })
+        })
+      })
+    }
+
     let reproduce = function(_i) {
       return getContractIns
       .then(ins => {
@@ -331,4 +352,3 @@ var ethereum = function(onNetFail) {
 
 ether = ethereum()
 
-ether.getContractIns.catch((err) => {alert(err);})
