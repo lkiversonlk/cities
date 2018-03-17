@@ -39,6 +39,23 @@ ins.maxLv((err, lv) => {
 
     app.set('views', path.join(__dirname, 'public/web'));
   
+    let color = {
+      1: 'red',
+      2: 'yellow',
+      3: 'blue',
+      4: 'green'
+    }
+
+    let level = {
+      1: 'A',
+      2: 'B',
+      3: 'C',
+      4: 'D'
+    }
+
+    let genMaker = (lv) => {
+      return `color:${color[lv]}%7Clabel:${level[lv]}`
+    }
     app.engine('.html', exphbs({
       extname: ".html",
       helpers: {
@@ -48,11 +65,11 @@ ins.maxLv((err, lv) => {
         Id2G: function(id) {
           return _tool.fromIdToGoogle(id)
         },
-        gmap: function(lat, lon) {
-          return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lon}&zoom=18&size=300x300&maptype=roadmap&markers=color:blue%7Clabel:C%7C${lat},${lon}&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A`          
+        gmap: function(lat, lon, lv) {
+          return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lon}&zoom=18&size=300x300&maptype=roadmap&markers=${genMaker(lv)}%7C${lat},${lon}&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A`          
         },
-        gmapBanner: function(lat, lon) {
-          return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lon}&zoom=18&size=640x200&scale=2&maptype=roadmap&markers=color:blue%7Clabel:C%7C${lat},${lon}&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A`
+        gmapBanner: function(lat, lon, lv) {
+          return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lon}&zoom=18&size=640x200&scale=2&maptype=roadmap&markers=${genMaker(lv)}%7C${lat},${lon}&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A`
         },
         transLv : function(lv) {
           return _tool.transLv(lv)
