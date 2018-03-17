@@ -95,7 +95,20 @@ function render() {
     let id = ele.getAttribute('e-id');
     ether.stage(id)
     .then(result => {
-      $(ele).text(result)
+      switch(result) {
+        case 'Unsold':
+        case 'Hold':
+          $(ele).text('Info')
+          break
+        case 'Yours':
+        case 'Sell':
+          $(ele).text('View')
+          break
+        case 'Buy':
+          $(ele).text('Buy')
+          break
+      }
+      //$(ele).text(result)
     })
   });
 }

@@ -129,6 +129,23 @@ router.get('/reproduce/:id', (req, res) => {
   
 })
 
+router.get('/sell/:id', (req, res) => {
+  let _id = req.params.id
+  let tool = req.app.get('tool')
+
+  if(tool.isValidId(_id)) {
+    let data = {
+      id: _id
+    }
+
+    data = Object.assign(data, tool.fromIdToGoogle(_id))
+    return res.render('sell', data)
+  } else {
+    return res.send(`${_id} is invalid`)
+  }
+  
+})
+
 router.get('/admin', (req, res) => {
   return res.render('admin', data.getData())
 });
