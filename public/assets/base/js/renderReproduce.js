@@ -43,6 +43,18 @@ let ele = $('#reproduce-cost')[0]
 
 if(ele) {
   let id = ele.getAttribute('e-id');
+
+  ether.reproducable(id)
+    .then(_reproducable => {
+      
+      if(_reproducable) {
+        $('#reproducable').text(`reproducable`)
+      } else {
+        $('#reproducable').text(`unreproducable`)
+        $("#reproduce").hide()
+      }
+    })
+
   ether.reproduceCost(id)
   .then(price => {
     $(ele).val(`${price} ETH`);
