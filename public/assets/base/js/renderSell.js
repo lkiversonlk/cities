@@ -48,6 +48,16 @@ if(ele) {
     })
   })
 
+  ether.reproducable(id)
+  .then(reproducable => {
+    if(reproducable) {
+      $('[name="reproduce"').text('reproducable')
+    } else {
+      $('[name="reproduce"').text('unreproducable')
+    }
+    
+  })
+
   $("#sell").click(() => {
     ether.sellToken(id)
     .then(tx => {
