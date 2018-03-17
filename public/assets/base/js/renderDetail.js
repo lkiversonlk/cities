@@ -68,7 +68,8 @@ if(ele) {
     if(_state !== 'Unsold') {
       ether.getPriceWithFloor(id)
         .then(price => {
-          $(ele).text(`${price} ETH`);
+          price = parseFloat(price).toFixed(3)
+          $(ele).text(`${price} ETH`)
         })
     }
 
