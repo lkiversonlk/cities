@@ -77,7 +77,14 @@ if(ele) {
     .then(_reproducable => {
       if(_reproducable) {
         if(_state === 'Yours' || _state === 'Sell') {
-          $("#reproduce").show()
+          ether.inCooldown(id)
+          .then(_cooldown => {
+            if(_cooldown) {
+              //in cool down
+              $("#reproduce").show()              
+            } else {
+            }
+          })          
         }
       }
     })
