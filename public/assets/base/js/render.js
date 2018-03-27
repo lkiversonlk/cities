@@ -71,19 +71,19 @@ function render() {
     .then(result => {
       if(result) {
         //if in cooldown
-        ether.inCooldown(i)
+        ether.inCooldown(id)
         .then(_cooldown => {
           if(_cooldown) {
             $(ele).text('Reproducible')
           } else {
-            ether.timeRemain(i)
+            ether.timeRemain(id)
             .then(_remain => {
               $(ele).text(`cooldown: ${_remain} seconds`)
             })
           }
         })
       } else {
-        $(ele).text('Unreproducible')
+        $(ele).text('Unreproducible');
       }
     })
   });
