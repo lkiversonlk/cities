@@ -70,7 +70,18 @@ function render() {
     ether.reproducable(id)
     .then(result => {
       if(result) {
-        $(ele).text('Reproducible')
+        //if in cooldown
+        ether.inCooldown(i)
+        .then(_cooldown => {
+          if(_cooldown) {
+            $(ele).text('Reproducible')
+          } else {
+            ether.timeRemain(i)
+            .then(_remain => {
+              $(ele).text(`cooldown: ${_remain} seconds`)
+            })
+          }
+        })
       } else {
         $(ele).text('Unreproducible')
       }

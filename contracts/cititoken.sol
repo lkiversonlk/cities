@@ -31,8 +31,8 @@ contract AmoebaControl {
     bool public paused = false;
 
     function AmoebaControl() public {
-      owner = msg.sender;
-      admin = msg.sender;
+        owner = msg.sender;
+        admin = msg.sender;
     }
     
     modifier onlyOwner() {
@@ -90,6 +90,8 @@ contract AmoebaBase is AmoebaControl {
     struct Position {
         address owner;
         uint256 price;
+        uint256 cooldown;
+        uint256 gen;
     }
 
     mapping (uint256 => Position) public positions;
@@ -124,14 +126,7 @@ contract AmoebaBase is AmoebaControl {
         positions[_pos_id].owner = _to;
         
         owned[_to].push(_pos_id);
-        
-        /*
-        // add token to new owner's stats
-        // no need to record transfer to contract
-        if(_to != address(this)) {
-            owned[_to].push(_pos_id);
-        }*/
-        
+
         /*
         //remove from prev owner's stats
         // if transfer from owner to contract, which means the token is on selling, doesn't remove it from previous owner
@@ -164,14 +159,17 @@ contract AmoebaBase is AmoebaControl {
     function _createToken(
         uint256 _id,
         address _to,
-        uint256 _price
+        uint256 _price,
+        uint256 _gen,
+        uint256 _cooldown
     ) internal
     {
         //not allow repeat creation
         require(positions[_id].owner == address(0));
         _transfer(0, _to, _id);
         positions[_id].price = _price;
-        
+        positions[_id].cooldown = _cooldown;
+        positions[_id].gen = _gen;
         //events
         NewToken(_to, _id);
     }
@@ -261,17 +259,11 @@ contract GeoAmoeba is AmoebaBase, ERC721{
     function transfer(address _to, uint256 _pos_id) public tokenOwner(_pos_id)
     {
         revert();
-        // require(_to != address(0));
-        // _transfer(msg.sender, _to, _pos_id);
     }
   
     function transferFrom(address _from, address _to, uint256 _id) public 
     {
         revert();
-        // require(_to != address(0));
-        // require(positions[_id].owner == _from);
-        // require(approved[_id] == msg.sender);
-        // _transfer(_from, _to, _id);
     }
     
     RandSource public randSource;
@@ -387,21 +379,6 @@ contract GeoAmoeba is AmoebaBase, ERC721{
         }
         return (ret, j);
     }
-    
-    /*
-    function beneficial(uint256 i) public view returns (address) {
-        if (positions[i].owner == address(0)) {
-            return address(0);
-        } 
-        
-        if (positions[i].owner == this) {
-            address seller;
-            uint256 _irrelavent;
-            (seller, _irrelavent, _irrelavent, _irrelavent, _irrelavent) = auctionContract.auctions(i);
-            return seller;
-        }
-        return positions[i].owner;
-    }*/
 
     function available(uint256 i) public view returns (uint256[]) {
         uint256[] memory _ava;
@@ -460,7 +437,14 @@ contract AuctionAmoeba is GeoAmoeba {
     
     uint256 public ownerCut;
     uint256 public bidFloor;
-    
+    uint256[] public cooldown = [
+        0,
+        1 minutes,
+        1 hours,
+        1 days,
+        3 days
+    ];
+
     mapping (uint256 => Auction) public auctions;
     
     /**************** events **********************************************************/
@@ -481,6 +465,14 @@ contract AuctionAmoeba is GeoAmoeba {
     {
         ownerCut = fee;
         bidFloor = _bidFloor;
+    }
+
+    function _genCooldown(uint256 gen) internal view returns (uint256) {
+        if (gen < cooldown.length) {
+            return cooldown[gen];
+        } else {
+            return cooldown[cooldown.length - 1];
+        }
     }
 
     function getStage(uint256 i) public view returns (Stage) {
@@ -693,9 +685,22 @@ contract AuctionAmoeba is GeoAmoeba {
         auctions[_id].seller = _to;
     }
     
+    function reproducable(uint256 i) public view returns (bool) {
+        return positions[i].cooldown <= now;
+    }
+
+    function timeRemain(uint256 i) public view returns (uint256) {
+        if (now >= positions[i].cooldown) {
+            return now - positions[i].cooldown;
+        } else {
+            return 0;
+        }
+    }
+
     function reproduce(uint256 i) public tokenOwner(i) payable whenNotPaused {
         uint256[] memory _ava = available(i);
         require(_ava.length > 0);
+        require(reproducable(i));
         
         uint256 _randSeed;
         if (address(randSource) != address(0)) {
@@ -711,12 +716,16 @@ contract AuctionAmoeba is GeoAmoeba {
         assert(price * 100 / 150 == fee);
         
         require(msg.value >= fee);
+
+        j = _ava[j];
+        uint256 _childCooldown = now + _genCooldown(positions[i].gen + 1);
+        _createToken(j, msg.sender, price, positions[i].gen + 1, _childCooldown);
+        positions[i].cooldown = now + _genCooldown(positions[i].gen);
+        auction(j);
+
         earned[this] += fee;
         msg.sender.transfer(msg.value - fee);
-        
-        j = _ava[j];
-        _createToken(j, msg.sender, price);
-        auction(j);
+
     }
     
     function withdrawal() public {

@@ -259,10 +259,10 @@
 						<div class="c-content-product-2 c-bg-white">
 						<div class="c-content-overlay">
 							<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">{{{cityName}}}</div>
-							<div name="price" e-id="{{{G2Id lat lon lv}}}" class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">loading...</div>
+							<div name="price" e-id="{{{id}}}" class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">loading...</div>
 							<div class="c-overlay-wrapper">
 								<div class="c-overlay-content">
-									<a name="action" e-id="{{{G2Id lat lon lv}}}" href="/details/{{{G2Id lat lon lv}}}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Loading</a>
+									<a name="action" e-id="{{{id}}}" href="/details/{{{id}}}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Loading</a>
 								</div>
 							</div>
 							<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url({{{gmap lat lon lv}}});"></div>
@@ -271,7 +271,7 @@
 						</div>
 						<div class="cbp-l-grid-agency-title">GeoID:({{{lat}}}, {{{lon}}})</div>
 						<div class="cbp-l-grid-agency-desc">
-							<span e-id="{{{G2Id lat lon lv}}}" name='reproducible' >Loading...</span>
+							<span e-id="{{{id}}}" name='reproducible' >Loading...</span>
 							-- <span>{{{transLv lv}}}</span>
 						</div>						
 					</a>
