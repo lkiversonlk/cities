@@ -1,3 +1,5 @@
+const numeral = require('numeral')
+
 function Tool(maxLv) {
   var self = this;
   if(!(maxLv >= 0 && maxLv < 100)) {
@@ -23,9 +25,13 @@ function Tool(maxLv) {
   }
 
   self.fromLonLatToId = function(_lat, _lon, _lv) {
-    let lon = Math.floor(_lon * self.float) * self.lonOffset;
-    let lat = Math.floor(_lat * self.float) * self.latOffset;
-    return lon + lat + _lv - 1;
+    _lon = numeral(_lon)
+    _lat = numeral(_lat)
+    _lv = numeral(_lv)
+    
+    let lon = _lon.multiply(self.float).multiply(self.lonOffset);
+    let lat = _lat.multiply(self.float).multiply(self.latOffset);
+    return lon.add(lat.value()).add(_lv.value()).subtract(1).value();
   }
 
   self.fromGooleToLonLat = function(_lat, _lon, _lv) {

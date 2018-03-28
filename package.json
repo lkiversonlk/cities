@@ -14,6 +14,7 @@
     "express-handlebars": "^3.0.0",
     "jade": "~1.11.0",
     "morgan": "~1.9.0",
+    "numeral": "^2.0.6",
     "serve-favicon": "~2.4.5",
     "web3": "^0.20.1"
   }
