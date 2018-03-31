@@ -79,7 +79,7 @@ ins.maxLv((err, lv) => {
           for(var i = 0; i < n; ++i) {
               block.data.index = i + 1;
               block.data.prev = i > 1? i - 1: 1;
-              block.data.last = i < n? i + 1: n;
+              block.data.next = i < n? i + 1: n;
               accum += block.fn(this);
           }
           return accum;

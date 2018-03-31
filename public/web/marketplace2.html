@@ -309,7 +309,7 @@
 		<div class="c-content-panel">
 			<div class="c-body">
 				<ul class="c-content-pagination c-theme">
-					<li class="c-prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+					<li class="c-prev"><a href="/marketplace?p={{@prev}}&city={{city}}"><i class="fa fa-angle-left"></i></a></li>
 					{{#times pages}}
 						{{#if (equalL page @index)}}
 						<li class="c-active"><a href="/marketplace?p={{@index}}&city={{city}}">{{@index}}</a></li>
@@ -319,7 +319,7 @@
 						
 						
 					{{/times}}
-					<li class="c-next"><a href="#"><i class="fa fa-angle-right"></i></a></li>							
+					<li class="c-next"><a href="/marketplace?p={{@next}}&city={{city}}"><i class="fa fa-angle-right"></i></a></li>							
 				</ul>
 			</div>
 		</div>
