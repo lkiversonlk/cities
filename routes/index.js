@@ -31,7 +31,23 @@ router.get("/marketplace", (req, res) => {
   if (!city) {
     city = 'newyork'
   }
-  return res.render('marketplace2', data.getCityData(city))
+
+  let page = req.query.p
+  if (!page) {
+    page = 0
+  } else {
+    page = parseInt(page) - 1
+  }
+
+  let _data = data.getCityData(city)
+  const cityPerPage = 8
+  cities = _data.tokens
+  const pages = Math.floor(cities.length / cityPerPage) + 1
+  _data.tokens = _data.tokens.slice(page * cityPerPage, (page + 1) * cityPerPage)
+  _data.pages = pages
+  _data.page = page + 1
+  _data.city = city
+  return res.render('marketplace2', _data)
   /*
   let tool = req.app.get("tool");
   let id = parseInt(req.params['id']);

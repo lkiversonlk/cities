@@ -310,16 +310,15 @@
 			<div class="c-body">
 				<ul class="c-content-pagination c-theme">
 					<li class="c-prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-					<li><a href="#">1</a></li>
-					<li class="c-active"><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">6</a></li>
-					<li><a href="#">7</a></li>
-					<li><a href="#">8</a></li>
-					<li><a href="#">9</a></li>
-					<li><a href="#">10</a></li>
+					{{#times pages}}
+						{{#if (equalL page @index)}}
+						<li class="c-active"><a href="/marketplace?p={{@index}}&city={{city}}">{{@index}}</a></li>
+						{{else}}
+						<li><a href="/marketplace?p={{@index}}&city={{city}}">{{@index}}</a></li>
+						{{/if}}
+						
+						
+					{{/times}}
 					<li class="c-next"><a href="#"><i class="fa fa-angle-right"></i></a></li>							
 				</ul>
 			</div>

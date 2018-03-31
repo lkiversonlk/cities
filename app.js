@@ -73,6 +73,19 @@ ins.maxLv((err, lv) => {
         },
         transLv : function(lv) {
           return _tool.transLv(lv)
+        },
+        times : function(n, block) {
+          var accum = '';
+          for(var i = 0; i < n; ++i) {
+              block.data.index = i + 1;
+              block.data.prev = i > 1? i - 1: 1;
+              block.data.last = i < n? i + 1: n;
+              accum += block.fn(this);
+          }
+          return accum;
+        },
+        equalL : function(i, j) {
+          return i == j
         }
       }
     }));
