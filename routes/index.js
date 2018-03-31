@@ -42,8 +42,11 @@ router.get("/marketplace", (req, res) => {
   let _data = data.getCityData(city)
   const cityPerPage = 8
   cities = _data.tokens
-  const pages = Math.floor(cities.length / cityPerPage) + 1
-  _data.tokens = _data.tokens.slice(page * cityPerPage, (page + 1) * cityPerPage)
+  if(!cities) {
+    cities = []
+  }
+  const pages = Math.ceil(cities.length / cityPerPage)
+  _data.tokens = cities.slice(page * cityPerPage, (page + 1) * cityPerPage)
   _data.pages = pages
   _data.page = page + 1
   _data.city = city
