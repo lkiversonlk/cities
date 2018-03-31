@@ -45,7 +45,7 @@
 			<!-- BEGIN: BRAND -->
 			<div class="c-navbar-wrapper clearfix">
 				<div class="c-brand c-pull-left">
-					<a href="/" class="c-logo">
+					<a href="index.html" class="c-logo">
 						<img src="../assets/base/img/layout/logos/logo.png" alt="CitiesToken" class="c-desktop-logo">
 						<img src="../assets/base/img/layout/logos/logo.png" alt="CitiesToken" class="c-desktop-logo-inverse">
 						<img src="../assets/base/img/layout/logos/logo.png" alt="CitiesToken" class="c-mobile-logo">
@@ -79,17 +79,17 @@
 <nav class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-bold">
 	<ul class="nav navbar-nav c-theme-nav"> 
 						<li >
-						<a href="/	" class="c-link dropdown-toggle">Home<span class="c-arrow c-toggler"></span></a>
+						<a href="/" class="c-link dropdown-toggle">Home<span class="c-arrow c-toggler"></span></a>
 					</li>
 						<li class="c-active">
 						<a href="/marketplace" class="c-link dropdown-toggle">Marketplace<span class="c-arrow c-toggler"></span></a>
 					</li>
 						<li >
-						<a href="/faq" class="c-link dropdown-toggle">FAQ<span class="c-arrow c-toggler"></span></a>
+						<a href="/faq.html" class="c-link dropdown-toggle">FAQ<span class="c-arrow c-toggler"></span></a>
 												
 					</li>
 						<li >
-						<a href="/mytokens/{{{address}}}" class="c-link dropdown-toggle">MyTokens<span class="c-arrow c-toggler"></span></a>
+						<a href="/mytokens/{{address}}" class="c-link dropdown-toggle">MyTokens<span class="c-arrow c-toggler"></span></a>
 										
 					</li>
 		
@@ -99,8 +99,7 @@
 		</li>
 		
 				<li>
-			<!-- <a href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i> Sign In</a> -->
-			<a href="javascript:;" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i><span id='user'>Sign In</span></a>
+			<a href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i> Sign In</a>
 		</li>
 		
 		
@@ -153,7 +152,7 @@
             </div>
             <div class="modal-body">
                 <h3 class="c-font-24 c-font-sbold">MetaMask is locked!</h3>
-                <p>Unlock it in your browser toolbar<img src="../assets/img/metamask-plug-icon.jpg" height="20"></p>
+                <p>Unlock it in your browser toolbar→<img src="../assets/img/metamask-plug-icon.jpg" height="20"></p>
                 <form>
                     <div class="form-group" align="center">
 <img src="../assets/img/metamask-logo-gray.jpg" width="210">
@@ -199,24 +198,17 @@
 <div class="c-layout-breadcrumbs-1 c-fonts-uppercase c-fonts-bold">
 	<div class="container">
 		<div class="c-page-title c-pull-left">
-			<h3 class="c-font-uppercase c-font-sbold">MarketPlace</h3>
+			<h3 class="c-font-sbold">MarketPlace: <font color="#31c5d2">New York</font></h3>
 		</div>
 		
-							<div class="form-group c-pull-right">
-								<div class="row">
-									<label for="inputPassword3" class="col-md-6 control-label" align="right">Level filter:</label>
-										<div class="col-md-2">
-											<select class="form-control  c-square c-theme">
-											   <option value="all">ALL</option>
-											   <option value="1">Level 1 only</option>
-											   <option value="2">Level 2 only</option>
-											   <option value="3">Level 3 only</option>
-											   <option value="4">Level 4 only</option>
-										 </select>
-									 </div>
-								</div>
-							</div>
-
+		<ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
+			<li class="c-state_active"><a href="/marketplace?city=newyork">New York</a></li>
+			<li>/</li>
+			<li><a href="/marketplace?city=tokyo">Tokyo</a></li>
+			<li>/</li>
+			<li><a href="/marketplace?city=longdon">London</a></li>
+			<li>/</li>														
+		</ul>
 	</div>
 </div>
 <!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
@@ -225,66 +217,113 @@
 		<div class="c-content-box c-size-md">
 	<div class="container">
         <div id="filters-container" class="cbp-l-filters-text">
-            <div class="cbp-l-filters-text-sort">Sort by:</div>
-            <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">
-                All <div class="cbp-filter-counter"></div>
+            <div class="cbp-l-filters-text-sort">
+				Sort by:
+			</div>
+			<div data-filter="*" class="cbp-filter-item-active cbp-filter-item">
+				All <div class="cbp-filter-counter"></div>
 			</div> /
-			{{#each cities}}
-			<div data-filter=".{{{@key}}}" class="cbp-filter-item">
+			{{#each levels}}
+			<div data-filter=".lv{{{@key}}}" class="cbp-filter-item">
 					{{{this}}} <div class="cbp-filter-counter"></div>
 			</div> /
 			{{/each}}
+
 			<!--
+            <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">
+                All <div class="cbp-filter-counter"></div>
+            </div> /
             <div data-filter=".tokyo" class="cbp-filter-item">
-                Tokyo <div class="cbp-filter-counter"></div>
+                Level-Large <div class="cbp-filter-counter"></div>
             </div> /
             <div data-filter=".newyork" class="cbp-filter-item">
-                New York <div class="cbp-filter-counter"></div>
+                Level-Middel <div class="cbp-filter-counter"></div>
             </div> /
             <div data-filter=".losangeles" class="cbp-filter-item">
-                Los Angeles <div class="cbp-filter-counter"></div>
-            </div> /
-            <div data-filter=".seoul" class="cbp-filter-item">
-                Seoul <div class="cbp-filter-counter"></div>
-            </div> /
-            <div data-filter=".hongkong" class="cbp-filter-item">
-                HongKong <div class="cbp-filter-counter"></div>
-            </div>-->
+                Level-Small <div class="cbp-filter-counter"></div>
+            </div> -->
+        <div align="center">
+            <button type="button" class="btn btn btn-default c-btn-circle" data-toggle="modal" data-target="#myModal">
+				 What is token's Level?
+			</button>
+		</div>
+
         </div>
 
-        <div id="grid-container" class="cbp cbp-l-grid-agency">
-			{{#each tokens}}
-				<div class="cbp-item {{{city}}}">
-					<a href="#" target="_blank" >
-						<div class="c-content-product-2 c-bg-white">
-						<div class="c-content-overlay">
-							<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">{{{cityName}}}</div>
-							<div name="price" e-id="{{{G2Id lat lon lv}}}" class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">loading...</div>
-							<div class="c-overlay-wrapper">
-								<div class="c-overlay-content">
-									<a name="action" e-id="{{{G2Id lat lon lv}}}" href="/details/{{{G2Id lat lon lv}}}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Loading</a>
-								</div>
+			<div class="c-body">
+				<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content c-square">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+								<h4 class="modal-title" id="myModalLabel">CitiesToken's Level</h4>
 							</div>
-							<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url({{{gmap lat lon lv}}});"></div>
+							<div class="modal-body">
+<p>
+<li><b>Level-L: Large token</b><br />[about 1,000,000 ㎡ in City, and cover 100 Level-M tokens]</li>
+<li><b>Level-M: Middle token</b><br />[about 10,000 ㎡ in City, and cover 100 Level-S tokens]</li>
+<li><b>Level-S: Small token</b><br />[about 100 ㎡ in City, and cover none tokens]</li>
+</p>
+<p /><b class="c-font-green-3">The Owner of higher level token can earn 5% commission from Each transaction of the lower level token which covered. </b>
+
+							</div>
+							<div class="modal-footer">								
+								<button type="button" class="btn c-theme-btn c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Close</button>
+							</div>
 						</div>
-	
-						</div>
-						<div class="cbp-l-grid-agency-title">GeoID:({{{lat}}}, {{{lon}}})</div>
-						<div class="cbp-l-grid-agency-desc">
-							<span e-id="{{{G2Id lat lon lv}}}" name='reproducible' >Loading...</span>
-							-- <span>{{{transLv lv}}}</span>
-						</div>						
-					</a>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
 				</div>
-			{{/each}}
-        </div>
-        <div id="loadMore-container" class="cbp-l-loadMore-button c-margin-t-60">
-            <a href="ajax/index-gallery/load-more.html" class="cbp-l-loadMore-link btn c-btn-square c-btn-border-2x c-btn-dark c-btn-bold c-btn-uppercase">
-                <span class="cbp-l-loadMore-defaultText">LOAD MORE</span>
-                <span class="cbp-l-loadMore-loadingText">LOADING...</span>
-                <span class="cbp-l-loadMore-noMoreLoading">NO MORE WORKS</span>
-            </a>
-        </div>
+			</div>
+
+
+        <div id="grid-container" class="cbp cbp-l-grid-agency"> 
+			{{#each tokens}}
+			<div class="cbp-item lv{{{lv}}}">
+				<a href="#" target="_blank" >
+					<div class="c-content-product-2 c-bg-white">
+					<div class="c-content-overlay">
+						<div class="c-label c-bg-green c-font-white c-font-13 c-font-bold">{{{cityName}}}</div>
+						<div name="price" e-id="{{{G2Id lat lon lv}}}" class="c-label c-label-right c-bg-red c-font-white c-font-13 c-font-bold">loading...</div>
+						<div class="c-overlay-wrapper">
+							<div class="c-overlay-content">
+								<a name="action" e-id="{{{G2Id lat lon lv}}}" href="/details/{{{G2Id lat lon lv}}}" class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square">Loading</a>
+							</div>
+						</div>
+						<div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 270px; background-image: url({{{gmap lat lon lv}}});"></div>
+					</div>
+
+					</div>
+					<div class="cbp-l-grid-agency-title">GeoID:({{{lat}}}, {{{lon}}})</div>
+					<div class="cbp-l-grid-agency-desc">
+						<span e-id="{{{G2Id lat lon lv}}}" name='reproducible' >Loading...</span>
+						-- <span>{{{transLv lv}}}</span>
+					</div>
+					
+				</a>
+			</div>
+			{{/each}}			
+	        </div>
+
+		<div class="c-content-panel">
+			<div class="c-body">
+				<ul class="c-content-pagination c-theme">
+					<li class="c-prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+					<li><a href="#">1</a></li>
+					<li class="c-active"><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">6</a></li>
+					<li><a href="#">7</a></li>
+					<li><a href="#">8</a></li>
+					<li><a href="#">9</a></li>
+					<li><a href="#">10</a></li>
+					<li class="c-next"><a href="#"><i class="fa fa-angle-right"></i></a></li>							
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>  
 		<!-- END: PAGE CONTENT -->
@@ -302,21 +341,17 @@
 						<h3 class="c-font-uppercase c-font-bold c-font-white c-border">Cities<span class="c-theme-font">Token</span></h3>
 					</div>
 					<p class="c-about">
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed elit diam nonummy ad minim veniam quis nostrud 
-						exerci et tation diam nisl ut aliquip exit commodo consequat euismod tincidunt ut laoreet dolore magna aluam. 
+					CitiesToken is a platform supply the most Biggest Cities Geo-code token in the Ethereum, user can buy / sell / reproduce Citiestoken in this platform.
 					</p>
 					<div class="c-links">
 						<ul class="c-nav">
-							<li><a href="#">Home</a></li>
-							<li><a class="c-active c-theme-border c-theme-font" href="#">Marketplace</a></li>
+							<li><a class="c-active c-theme-border c-theme-font" href="#">Home</a></li>
+							<li><a href="#">Marketplace</a></li>
 							<li><a href="#">FAQ</a></li>
 						</ul>
 					</div>
 					<p class="c-contact">
-						25, Lorem Lis Street, Orange C, California, US<br>
-						Phone: 800 123 3456<br>
-						Fax: 800 123 3456<br>
-						Skype: jango.inc
+                    Scotia Centre, 4th Floor, P.O. Box 2806, George Town, <br />Grand Cayman KY1-1212, <br />Cayman Islands
 					</p>
 					<ul class="c-socials">
 						<li><a href="#"><i class="icon-social-twitter"></i></a></li>
@@ -328,10 +363,10 @@
 				<div class="col-md-6 c-footer-4-p-left">
 					<div class="c-feedback">
 						<h3 class="c-font-thin">Contact Us</h3>
-						<form action="#">
-		                    <input type="text" placeholder="Your Name" class="form-control">
+						<form  name="sendmail" action="mailto:maptoken@gmail.com">
                         	<input type="text" placeholder="Your Email" class="form-control">
-		                   	<textarea rows="8" name="message" placeholder="Write comment here ..." class="form-control"></textarea>
+		                    <input type="text" name="subject" placeholder="Your Subject" class="form-control">
+		                   	<textarea rows="8" name="body" placeholder="Write comment here ..." class="form-control"></textarea>
 		                    <button type="submit" class="btn c-btn-white c-btn-border-2x c-btn-uppercase btn-lg c-btn-bold c-btn-square">Send</button> 
 	                   	</form>
 	                </div>
@@ -375,13 +410,11 @@
 	<script src="../assets/base/js/components.js" type="text/javascript"></script>
 	<script src="../assets/base/js/components-shop.js" type="text/javascript"></script>
 	<script src="../assets/base/js/app.js" type="text/javascript"></script>
-	<script src="../assets/base/js/ethereum.js" type="text/javascript"></script>
 	<script>
 	$(document).ready(function() {    
 		App.init(); // init core    
 	});
 	</script>
-	<script src="../assets/base/js/renderMarket.js"></script>
 	<!-- END: THEME SCRIPTS -->
 
 			<!-- BEGIN: PAGE SCRIPTS -->

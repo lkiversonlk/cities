@@ -22,12 +22,16 @@ router.get("/details/:id", (req, res) => {
     return res.send(`${id} is not valid`)
   } else {
     data = Object.assign(data, {id: req.params['id']})
-    return res.render('details', data);
+    return res.render('details2', data);
   }
 })
 
 router.get("/marketplace", (req, res) => {
-  return res.render('marketplace', data.getData())
+  let city = req.query.city
+  if (!city) {
+    city = 'newyork'
+  }
+  return res.render('marketplace2', data.getCityData(city))
   /*
   let tool = req.app.get("tool");
   let id = parseInt(req.params['id']);
