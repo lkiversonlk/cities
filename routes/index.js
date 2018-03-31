@@ -22,8 +22,12 @@ router.get("/details/:id", (req, res) => {
     return res.send(`${id} is not valid`)
   } else {
     data = Object.assign(data, {id: req.params['id']})
-    return res.render('details2', data);
+    return res.render('details', data);
   }
+})
+
+router.get("/test", (req, res) => {
+  return res.render('details2')
 })
 
 router.get("/marketplace", (req, res) => {
