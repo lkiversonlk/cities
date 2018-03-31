@@ -47,6 +47,7 @@ router.get("/marketplace", (req, res) => {
   _data.pages = pages
   _data.page = page + 1
   _data.city = city
+  _data.cityName = _data.cities[city]
   return res.render('marketplace2', _data)
   /*
   let tool = req.app.get("tool");
