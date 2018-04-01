@@ -202,12 +202,10 @@
 		</div>
 		
 		<ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
-			<li class="c-state_active"><a href="/marketplace?city=newyork">New York</a></li>
+			{{#each cities}}
+			<li><a href="/marketplace?city={{{@key}}}">{{{this}}}</a></li>
 			<li>/</li>
-			<li><a href="/marketplace?city=tokyo">Tokyo</a></li>
-			<li>/</li>
-			<li><a href="/marketplace?city=longdon">London</a></li>
-			<li>/</li>														
+			{{/each}}
 		</ul>
 	</div>
 </div>
