@@ -74,6 +74,9 @@ ins.maxLv((err, lv) => {
         transLv : function(lv) {
           return _tool.transLv(lv)
         },
+        transLvS : function(lv) {
+          return _tool.transLvS(lv)
+        },
         times : function(n, block) {
           var accum = '';
           for(var i = 0; i < n; ++i) {

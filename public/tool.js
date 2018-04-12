@@ -1,5 +1,6 @@
 const numeral = require('numeral')
 const levels = require('../routes/data').levels
+const levelSs = require("../routes/data").levelSs
 
 function Tool(maxLv) {
   var self = this;
@@ -83,6 +84,10 @@ function Tool(maxLv) {
 
   self.transLv = (lv) => {
     return levels[lv]
+  }
+
+  self.transLvS = (lv) => {
+    return levelSs[lv]
   }
 }
 

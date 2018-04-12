@@ -44,7 +44,7 @@ router.get("/marketplace", (req, res) => {
   }
 
   let _data = data.getCityData(city)
-  const cityPerPage = 8
+  const cityPerPage = 12
   cities = _data.tokens
   if(!cities) {
     cities = []

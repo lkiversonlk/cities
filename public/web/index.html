@@ -305,16 +305,16 @@
 				<div data-filter="*" class="cbp-filter-item-active cbp-filter-item">
                 All <div class="cbp-filter-counter"></div>
 				</div> /
-				{{#each levels}}
-				<div data-filter=".lv{{{@key}}}" class="cbp-filter-item">
-						{{{this}}} <div class="cbp-filter-counter"></div>
+				{{#each cities}}
+				<div data-filter=".{{{@key}}}" class="cbp-filter-item">
+						<a href="/marketplace?city={{{@key}}}" target="blank">{{{this}}}</a> <div class="cbp-filter-counter"></div>
 				</div> /
 				{{/each}}
 			</div>
 		
         <div id="grid-container" class="cbp cbp-l-grid-agency"> 
 					{{#each tokens}}
-						<div class="cbp-item lv{{{lv}}}">
+						<div class="cbp-item {{{city}}}">
 							<a href="#" target="_blank" >
 								<div class="c-content-product-2 c-bg-white">
 								<div class="c-content-overlay">
@@ -332,7 +332,7 @@
 								<div class="cbp-l-grid-agency-title">GeoID:({{{lat}}}, {{{lon}}})</div>
 								<div class="cbp-l-grid-agency-desc">
 									<span e-id="{{{G2Id lat lon lv}}}" name='reproducible' >Loading...</span>
-									-- <span>{{{transLv lv}}}</span>
+									-- <span>{{{transLvS lv}}}</span>
 								</div>
 								
 							</a>

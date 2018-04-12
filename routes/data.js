@@ -12,6 +12,12 @@ let levels = {
   4: 'Level-Small'
 }
 
+let levelSs = {
+  2: 'Level-L',
+  3: 'Level-M',
+  4: 'Level-S'
+}
+
 let files = ['newyork','seoul','Tokyo', 'hongkong']
 files.forEach(t => {
   const rl = readline.createInterface({
@@ -45,7 +51,7 @@ files.forEach(t => {
 })
 
 exports.getData = () => {
-  return {cities, tokens, levels};
+  return {cities, tokens: tokens.slice(0, 8), levels};
 }
 
 exports.getCityData = (city) => {
@@ -53,3 +59,4 @@ exports.getCityData = (city) => {
 }
 
 exports.levels = levels
+exports.levelSs = levelSs

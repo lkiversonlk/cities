@@ -113,7 +113,7 @@ function render() {
           break
         case 'Yours':
         case 'Sell':
-          $(ele).text('View')
+          $(ele).text('My')
           break
         case 'Buy':
           $(ele).text('Buy')
