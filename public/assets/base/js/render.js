@@ -32,7 +32,7 @@ ether
 .catch(err => {
   alert(err);
 })*/
-
+/*
 ether
 .getWeb3
 .then(ethereum =>{
@@ -110,7 +110,7 @@ function render() {
   });
 }
 
-render();
+render();*/
 /*
 $.get("/assets/tpl/token.hbs", data => {
   let tpl = Handlebars.compile(data);
