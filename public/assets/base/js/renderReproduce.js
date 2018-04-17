@@ -1,22 +1,3 @@
-/*
-let ether = ethereum((err) => {
-  alert(err);
-})
-
-let web3;
-
-ether
-.getWeb3
-.then(_ethereum => {
-  web3 = _ethereum.web3;
-  return ether;
-})
-.then(_ether => {
-  return _ether.getContractIns;
-})
-.catch(err => {
-  alert(err);
-})*/
 ether
 .getWeb3
 .then(ethereum =>{

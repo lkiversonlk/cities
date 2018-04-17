@@ -57,7 +57,7 @@ ins.maxLv((err, lv) => {
       1: 9,
       2: 13,
       3: 16,
-      4: 9
+      4: 19
     }
 
     let genMaker = (lv) => {
