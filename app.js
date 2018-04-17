@@ -47,10 +47,17 @@ ins.maxLv((err, lv) => {
     }
 
     let level = {
-      1: 'A',
-      2: 'B',
-      3: 'C',
-      4: 'D'
+      1: 'L',
+      2: 'M',
+      3: 'S',
+      4: 'T'
+    }
+
+    let zoom = {
+      1: 9,
+      2: 13,
+      3: 16,
+      4: 9
     }
 
     let genMaker = (lv) => {
@@ -70,6 +77,9 @@ ins.maxLv((err, lv) => {
         },
         gmapBanner: function(lat, lon, lv) {
           return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lon}&zoom=18&size=640x200&scale=2&maptype=roadmap&markers=${genMaker(lv)}%7C${lat},${lon}&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A`
+        },
+        gmapBanner2: function(lat, lon, lv) {
+          return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lon}&zoom=${zoom[lv]}&size=640x200&scale=2&maptype=roadmap&markers=icon:http://www.citiestoken.com/assets/img/square.png%7C${lat},${lon}&key=AIzaSyCHjhyaWs-swqQAPOU6e7i6buEE2boXG0A`
         },
         transLv : function(lv) {
           return _tool.transLv(lv)

@@ -65,6 +65,7 @@ if(ele) {
     .then(tx => {
       console.log(tx)
     })
+    return false
   })
 }
 
