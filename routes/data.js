@@ -53,8 +53,18 @@ files.forEach(t => {
   })
 })
 
+
+let sorted = false
 exports.getData = () => {
+  if(!sorted) {
+    tokens.sort(() => Math.random() - 0.5)
+    sorted = true
+  }
   return {cities, tokens: tokens.slice(0, 8), levels};
+}
+
+exports.getAllData = () => {
+  return {cities, tokens: tokens, levels};
 }
 
 exports.getCityData = (city) => {

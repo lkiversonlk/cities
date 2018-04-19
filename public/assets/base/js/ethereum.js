@@ -289,7 +289,7 @@ var ethereum = function(onNetFail) {
             if(err) {
               reject(err)
             } else {
-              let price = _pos[1].toNumber() / 2
+              let price = _pos[1].toNumber() * 60 / 100
               resolve(
                 getWeb3
                 .then(ethereum => {
@@ -310,7 +310,7 @@ var ethereum = function(onNetFail) {
             if(err) {
               reject(err)
             } else {
-              let price = _pos[1].toNumber() / 2
+              let price = _pos[1].toNumber() * 60 / 100
               ins.reproduce(_i, {value: price}, (err, tx) => {
                 if(err) {
                   reject(err)

@@ -175,7 +175,7 @@ router.get('/sell/:id', (req, res) => {
 })
 
 router.get('/admin', (req, res) => {
-  return res.render('admin', data.getData())
+  return res.render('admin', data.getAllData())
 });
 
 module.exports = router;

@@ -587,7 +587,7 @@ contract AuctionAmoeba is GeoAmoeba {
         earned[address(this)] += toOwner;
         
         uint256[] memory ups = upTokens(i);
-        uint256 split = price * 5 / 100;
+        uint256 split = price * 6 / 100;
         
         for(uint j = 0; j < ups.length; j ++) {
             address _owner = ownerOf(ups[j]);
@@ -634,6 +634,7 @@ contract AuctionAmoeba is GeoAmoeba {
         _fromId(i); //id validation
         // _transfer(msg.sender, address(this), i);
         uint256 price = positions[i].price * 160 / 100;
+        assert(price * 100 / 160 == positions[i].price);
         _createAuction(i, price, positions[i].price, uint256(30 days), msg.sender);
     }
     
@@ -709,12 +710,10 @@ contract AuctionAmoeba is GeoAmoeba {
             _randSeed = _rand();
         }
         uint256 j = _randSeed % _ava.length;
-        uint256 fee = positions[i].price * 65 / 100;
-        assert(fee * 100 / 65 == positions[i].price);
+        uint256 fee = positions[i].price * 60 / 100;
+        assert(fee * 100 / 60 == positions[i].price);
         
-        uint256 price = fee * 15/13;
-        assert(price * 13/15 == fee);
-        
+        uint256 price = fee;
         require(msg.value >= fee);
 
         j = _ava[j];

@@ -41,7 +41,7 @@ if(ele) {
   .then(price => {
     return ether.getWeb3
     .then(ethereum => {
-      let high = ethereum.web3.fromWei(price * 150 / 100)
+      let high = ethereum.web3.fromWei(price * 160 / 100)
       let low = ethereum.web3.fromWei(price)
       $('#high').val(high)
       $('#low').val(low)
