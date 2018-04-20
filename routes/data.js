@@ -20,6 +20,7 @@ let levelSs = {
   4: 'Level-T'
 }
 
+let repeated = {}
 let files = ['newyork','seoul','Tokyo', 'hongkong']
 files.forEach(t => {
   const rl = readline.createInterface({
@@ -32,6 +33,12 @@ files.forEach(t => {
         let lat = parseFloat(_dat[0]).toFixed(4)
         let lon = parseFloat(_dat[1]).toFixed(4)
         let lv = parseInt(_dat[2])
+
+        if (repeated.hasOwnProperty(`${lat}-${lon}-${lv}`)) {
+          return
+        } else {
+          repeated[`${lat}-${lon}-${lv}`] = true
+        }
         /*
         if (lv === 0) {
           return
