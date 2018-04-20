@@ -524,8 +524,8 @@ contract AuctionAmoeba is GeoAmoeba {
         } else {
             int256 _priceRange = int256(_endPrice) - int256(_startPrice);
             
-            int256 _passedDays = int256(_secondsPassed) / 10; //86400;
-            int256 _durationDays = int256(_duration) / 10; //86400;
+            int256 _passedDays = int256(_secondsPassed) / 86400;
+            int256 _durationDays = int256(_duration) / 86400;
             
             int256 _priceChange = _priceRange * _passedDays / _durationDays;
             int256 cp = int256(_startPrice) + int256(_priceChange);
