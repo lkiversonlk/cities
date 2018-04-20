@@ -249,21 +249,27 @@
 						</div>
 					</a>
 				</div>
-			{{else}}
+			{{/each}}
+
+			
+        </div>
+
+		{{#unless has}}
 			<div class="c-content-title-2">
 				<h3 class="c-center c-font-dark">You don't have any Citiestoken.</h3>
 				<p class="c-center">You can find some Citiestoken in the <a href="/marketplace">Marketplace</a>  </p>
 			</div>	
-			{{/each}}
-        </div>
+		{{/unless}}
 
+		<!--
         <div id="loadMore-container" class="cbp-l-loadMore-button c-margin-t-60">
             <a href="ajax/index-gallery/load-more.html" class="cbp-l-loadMore-link btn c-btn-square c-btn-border-2x c-btn-dark c-btn-bold c-btn-uppercase">
                 <span class="cbp-l-loadMore-defaultText">LOAD MORE</span>
                 <span class="cbp-l-loadMore-loadingText">LOADING...</span>
                 <span class="cbp-l-loadMore-noMoreLoading">NO MORE WORKS</span>
             </a>
-        </div>
+		</div>
+		-->
 	</div>
 </div>  
 		<!-- END: PAGE CONTENT -->
