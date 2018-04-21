@@ -302,6 +302,41 @@ var ethereum = function(onNetFail) {
       })
     }
 
+    let getEarned = function() {
+      return getWeb3
+      .then(ethereum => {
+        let address = ethereum.address
+        return getContractIns
+          .then( ins => {
+            return new Promise((resolve, reject) => {
+              ins.earned(address, (err, amount) => {
+                if (err) {
+                  reject(err)
+                } else {
+                  let _e = ethereum.web3.fromWei(amount.toNumber(), 'ether')
+                  resolve(_e)
+                }
+              })
+          })
+        })
+      })      
+    }
+
+    let withdraw = function() {
+      return getContractIns
+      .then(ins => {
+        return new Promise((resolve, reject) => {
+          ins.withdrawal((err, tx) => {
+            if(err) {
+              reject(err)
+            } else {
+              resolve(tx)
+            }
+          })
+        })
+      })
+    }
+    
     let reproduce = function(_i) {
       return getContractIns
       .then(ins => {
@@ -389,7 +424,9 @@ var ethereum = function(onNetFail) {
       timeRemain,
       stage,
       reproduceCost,
-      reproduce
+      reproduce,
+      getEarned,
+      withdraw
     }
 };
 

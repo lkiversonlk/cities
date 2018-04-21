@@ -182,4 +182,13 @@ router.get('/admin', (req, res) => {
   return res.render('admin', data.getAllData())
 });
 
+router.get('/withdraw/:address', (req, res) => {
+  let web3 = req.app.get('web3')
+  if(!web3.isAddress(req.params['address'])) {
+    return res.send(`${req.params['address']} is invalid`)
+  }
+
+  return res.render('withdraw', {address: req.params['address']})
+})
+
 module.exports = router;
