@@ -30,9 +30,10 @@ files.forEach(t => {
   rl.on('line', (line) => {
     let _dat = line.split(',')
     try{
-        let lat = parseFloat(_dat[0]).toFixed(4)
-        let lon = parseFloat(_dat[1]).toFixed(4)
         let lv = parseInt(_dat[2])
+        let lat = parseFloat(_dat[0]).toFixed(lv)
+        let lon = parseFloat(_dat[1]).toFixed(lv)
+        
 
         if (repeated.hasOwnProperty(`${lat}-${lon}-${lv}`)) {
           return

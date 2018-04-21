@@ -700,10 +700,10 @@ contract AuctionAmoeba is GeoAmoeba {
             _randSeed = _rand();
         }
         uint256 j = _randSeed % _ava.length;
-        uint256 fee = positions[i].price * 60 / 100;
+        uint256 fee = positions[i].price * 70 / 100;
         assert(positions[i].price >= fee);
         
-        uint256 price = fee;
+        uint256 price = positions[i].price * 60 / 100;
         require(msg.value >= fee);
 
         j = _ava[j];

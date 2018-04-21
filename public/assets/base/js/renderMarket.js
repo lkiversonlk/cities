@@ -92,11 +92,11 @@ function render() {
           } else {
             ether.timeRemain(id)
             .then(_remain => {
-              let days = Math.floor(_remain / 24 / 3600)
-              let hours = Math.floor(_remain / 3600) % 24
-              let minutes = Math.floor(_remain / 60) % 60
-              let seconds = _remain % 60 
-              $(ele).text(`cooldown: ${days}d:${hours}h:${minutes}m:${seconds}s`)
+              // let days = Math.floor(_remain / 24 / 3600)
+              // let hours = Math.floor(_remain / 3600) % 24
+              let minutes = Math.floor(_remain / 60)
+              let seconds = _remain % 60
+              $(ele).text(`cooldown: ${minutes}minutes`)
             })
           }
         })
