@@ -191,4 +191,8 @@ router.get('/withdraw/:address', (req, res) => {
   return res.render('withdraw', {address: req.params['address']})
 })
 
+router.get('/register', (req, res) => {
+  return res.render('register')
+})
+
 module.exports = router;
