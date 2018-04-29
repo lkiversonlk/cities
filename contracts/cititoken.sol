@@ -473,6 +473,12 @@ contract AuctionAmoeba is GeoAmoeba {
         }
     }
 
+    function _split(uint256 v) internal {
+        uint256 toDel = v * 10 / 100;
+        earned[_delegate] += toDel;
+        earned[this] += (v - toDel);
+    }
+
     function getStage(uint256 i) public view returns (Stage) {
         if (ownerOf(i) == 0) {
             return Stage.INITIAL;
@@ -585,10 +591,8 @@ contract AuctionAmoeba is GeoAmoeba {
         uint256 toOwner = price * ownerCut / 100;
         left = left - toOwner;
 
-        uint256 toDel = toOwner * 10 / 100;
-        earned[_delegate] += toDel;
-        earned[address(this)] += (toOwner - toDel);
-        
+        _split(toOwner);
+
         uint256[] memory ups = upTokens(i);
         uint256 split = price * 6 / 100;
         
@@ -673,7 +677,7 @@ contract AuctionAmoeba is GeoAmoeba {
         uint256 _fee = regPrice[lv];
         require(msg.value >= _fee);
 
-        //TODO: split fee
+        _split(msg.value);
 
         _transfer(address(0), msg.sender, i);
         _createAuction(i, _fee * 160 / 100, _fee, uint256(30 days), msg.sender);
@@ -749,14 +753,14 @@ contract AuctionAmoeba is GeoAmoeba {
         
         uint256 price = positions[i].price * 60 / 100;
         require(msg.value >= fee);
+        _split(fee);
 
         j = _ava[j];
         uint256 _childCooldown = now + _genCooldown(positions[i].gen + 1);
         _createToken(j, msg.sender, price, positions[i].gen + 1, _childCooldown);
         positions[i].cooldown = now + _genCooldown(positions[i].gen);
         auction(j);
-
-        earned[this] += fee;
+        
         msg.sender.transfer(msg.value - fee);
 
     }
