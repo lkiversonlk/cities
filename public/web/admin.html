@@ -146,13 +146,13 @@
 		$("#gen").click(() => {
 			ether.getContractIns
 			.then(ins => {
-				let batchSize = 4
+				let batchSize = 2
 				for(let i = 0; (i + 1) *batchSize < ids.length; i ++){
 					let _ids = ids.slice(i, i + batchSize)
 					ins.produce_batch(
 						_ids, 
-						"20000000000000000", 
-						"10000000000000000",
+						20000000000000000, 
+						10000000000000000,
 						(err, tx) => {
 							if(err) {
 								alert(err)
