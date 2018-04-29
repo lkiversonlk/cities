@@ -192,7 +192,7 @@ router.get('/withdraw/:address', (req, res) => {
 })
 
 router.get('/register', (req, res) => {
-  return res.render('register', {levels: data.levels})
+  return res.render('register', {levels: data.levelSsr})
 })
 
 router.get('/register2', (req, res) => {

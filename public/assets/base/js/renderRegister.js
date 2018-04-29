@@ -95,7 +95,7 @@ $("#register").click(function(){
 $("#checkout").click(function(){
   let longitude = parseFloat($("#iLongitude").val())
   let latitude = parseFloat($("#iLatitude").val())
-  window.open(`https://www.google.com/maps/place/${longitude},${latitude}`);
+  window.open(`https://www.google.com/maps/place/${latitude},${longitude}`);
   return false
 })
 

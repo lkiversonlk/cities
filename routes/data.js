@@ -9,7 +9,7 @@ let tokensByCity = {}
 let levels = {
   1: "Level-Huge",
   2: 'Level-Large',
-  3: 'Level-Middel',
+  3: 'Level-Middle',
   4: 'Level-Small'
 }
 
@@ -18,6 +18,13 @@ let levelSs = {
   2: 'Level-L',
   3: 'Level-M',
   4: 'Level-S'
+}
+
+let levelSsr = {
+  4: 'Level-Small',
+  3: 'Level-Middle',
+  2: 'Level-Large',
+  1: 'Level-Huge'
 }
 
 let repeated = {}
@@ -81,3 +88,4 @@ exports.getCityData = (city) => {
 
 exports.levels = levels
 exports.levelSs = levelSs
+exports.levelSsr = levelSsr
