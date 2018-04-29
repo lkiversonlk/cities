@@ -195,4 +195,14 @@ router.get('/register', (req, res) => {
   return res.render('register')
 })
 
+router.get('/g2i', (req, res) => {
+  let lon = req.query['lon']
+  let lat = req.query['lat']
+  let lv = req.query['lv']
+
+  let tool = req.app.get('tool')
+
+  return res.json(tool.fromGoogleToId(lat, lon, lv))
+})
+
 module.exports = router;

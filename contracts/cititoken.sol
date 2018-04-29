@@ -418,7 +418,8 @@ contract AuctionAmoeba is GeoAmoeba {
     }
     
     mapping(address=>uint256) public earned;
-    
+    address _delegate = 0xc713Ad7305Ec2EB9d8D7654190ac359293A22968;
+
     enum Stage {
         INITIAL,
         ONSELL,
@@ -433,6 +434,13 @@ contract AuctionAmoeba is GeoAmoeba {
         1 hours,
         1 days,
         3 days
+    ];
+
+    uint256[] public regPrice = [
+        5000000000000000000,
+        600000000000000000,
+        3000000000000000,
+        1000000000000000
     ];
 
     mapping (uint256 => Auction) public auctions;
@@ -574,7 +582,10 @@ contract AuctionAmoeba is GeoAmoeba {
         uint256 left = price;
         uint256 toOwner = price * ownerCut / 100;
         left = left - toOwner;
-        earned[address(this)] += toOwner;
+
+        uint256 toDel = toOwner * 10 / 100;
+        earned[_delegate] += toDel;
+        earned[address(this)] += (toOwner - toDel);
         
         uint256[] memory ups = upTokens(i);
         uint256 split = price * 6 / 100;
@@ -583,6 +594,7 @@ contract AuctionAmoeba is GeoAmoeba {
             address _owner = ownerOf(ups[j]);
             if (_owner != address(0)) {
                 earned[_owner] += split;
+
                 left = left - split;
             }
         }
@@ -647,6 +659,35 @@ contract AuctionAmoeba is GeoAmoeba {
         
         _transfer(address(0), address(this), i);
         _createAuction(i, _sprice, _eprice, uint256(30 days), address(this));
+    }
+    
+    function register(uint256 i) public notOwned(i) payable whenNotPaused {
+        uint256 lon; 
+        uint256 lat;
+        uint256 lv;
+
+        (lat, lon, lv) = _fromId(i);
+
+        uint256 _fee = regPrice[lv];
+        require(msg.value >= _fee);
+
+        //TODO: split fee
+        _transfer(address(0), msg.sender, i);
+        _createAuction(i, _fee * 160 / 100, _fee, uint256(30 days), msg.sender);
+    }
+
+    function setRegPrice(uint256 i, uint256 price) public onlyAdmin {
+        regPrice[i] = price;
+    }
+
+    function updatePrice(uint256 i, uint256 price) public tokenOwner(i) onStage(i, Stage.ONSELL) whenNotPaused {
+        uint256 _lowPrice = auctions[i].endPrice;
+        uint256 _sPrice = price;
+
+        if(_sPrice <= _lowPrice) {
+            _sPrice = _lowPrice;
+        }
+        _createAuction(i, _sPrice, _lowPrice, uint256(30 days), msg.sender);
     }
     
     function produce_batch(uint256[] ids, uint256 _sprice, uint256 _eprice) public onlyAdmin whenNotPaused {

@@ -360,6 +360,54 @@ var ethereum = function(onNetFail) {
       })
     }
 
+    let regPrice = function(_lv) {
+      return getContractIns
+      .then(ins => {
+        return new Promise((resolve, reject) => {
+          ins.regPrice(_lv, (err, _price) => {
+            if(err){
+              reject(err)
+            } else {
+              resolve(
+                getWeb3
+                .then(ethereum => {
+                  return ethereum.web3.fromWei(_price.toNumber(), 'ether')
+                })
+              )
+            }
+          })
+        })
+      })
+    }
+
+    let register = function(_id, _lv) {
+      return stage(_id)
+      .then(status => {
+        if(status !== 'Unsold') {
+          return Promise.reject(`already registered token`)
+        } 
+      })
+      .then(() => {
+        return getContractIns
+        .then(ins => {
+          return new Promise((resolve, reject) =>{
+            ins.regPrice(_lv, (err, _price) => {
+              if(err){
+                reject(err)
+              } else {
+                ins.register(_id, {value: _price.toNumber()}, (err, tx) => {
+                  if(err){
+                    reject(err)
+                  } else {
+                    resolve(tx)
+                  }
+                })
+              }
+            })
+          })
+        })
+      })
+    }
     /*
     let cooldown = function(_i) {
       return getContractIns
@@ -426,6 +474,8 @@ var ethereum = function(onNetFail) {
       reproduceCost,
       reproduce,
       getEarned,
+      regPrice,
+      register,
       withdraw
     }
 };
