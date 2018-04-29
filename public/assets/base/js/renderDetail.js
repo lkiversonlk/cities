@@ -57,6 +57,7 @@ if(ele) {
       break;
       case 'Sell':
       $("#unsell").show()
+      $("#setPriceBtn").show()
       break;
       case 'Buy':
       $('#buy').show()
@@ -71,6 +72,14 @@ if(ele) {
           price = parseFloat(price).toFixed(3)
           $(ele).text(`${price} ETH`)
         })
+    }
+
+    if(_state === 'Sell') {
+      ether.auctions(id)
+      .then(prices => {
+        $("#sprice").val(`${prices[0]}`)
+        $("#eprice").val(`${prices[1]}`)
+      })
     }
 
     ether.reproducable(id)
@@ -102,6 +111,14 @@ if(ele) {
     .then(tx => {
       console.log(tx)
     })
+  })
+
+  $("#callSetPrice").click(function(){
+    let p = parseFloat($("#sprice").val())
+
+    ether.updatePrice(id, p)
+    $("#setPrice").fade()
+    return false
   })
 
   /*

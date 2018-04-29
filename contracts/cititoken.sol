@@ -550,9 +550,11 @@ contract AuctionAmoeba is GeoAmoeba {
         
         //we do not allow repeat auction on same token before the former ended
         //there is already auction, just restart it
+        //now we allow
+        /*
         if (auctions[i].seller != address(0)) {
             return;
-        }
+        }*/
         
         auctions[i].seller = seller;
         auctions[i].startPrice = _start;
@@ -672,6 +674,7 @@ contract AuctionAmoeba is GeoAmoeba {
         require(msg.value >= _fee);
 
         //TODO: split fee
+
         _transfer(address(0), msg.sender, i);
         _createAuction(i, _fee * 160 / 100, _fee, uint256(30 days), msg.sender);
     }

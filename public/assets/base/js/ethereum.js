@@ -337,6 +337,30 @@ var ethereum = function(onNetFail) {
       })
     }
     
+    let auctions = function(_id) {
+      return getContractIns
+      .then(ins => {
+        return new Promise((resolve, reject) => {
+          ins.auctions(_id, (err, stats) => {
+            if(err){
+              reject(err)
+            } else {
+              let sPrice = stats[1]
+              let ePrice = stats[2]
+              resolve(
+                getWeb3
+                .then(ethereum => {
+                  let _sEth = ethereum.web3.fromWei(sPrice.toNumber(), 'ether')
+                  let _eEth = ethereum.web3.fromWei(ePrice.toNumber(), 'ether')
+                  return [_sEth, _eEth]
+                })
+              )              
+            }
+          })
+        })
+      })  
+    }
+
     let reproduce = function(_i) {
       return getContractIns
       .then(ins => {
@@ -408,6 +432,25 @@ var ethereum = function(onNetFail) {
         })
       })
     }
+
+    let updatePrice = function(_id, _p) {
+      return getWeb3
+      .then(ethereum => {
+        let p = ethereum.web3.toWei(_p)
+        return getContractIns
+        .then(ins => {
+          return new Promise((resolve, reject) => {
+            ins.updatePrice(_id, p, (err, tx) => {
+              if(err) {
+                reject(err)
+              } else {
+                resolve(tx)
+              }
+            })
+          })
+        })
+      })
+    }
     /*
     let cooldown = function(_i) {
       return getContractIns
@@ -458,6 +501,7 @@ var ethereum = function(onNetFail) {
       })
     }
 
+
     return {
       getWeb3,
       getContractIns,
@@ -476,6 +520,8 @@ var ethereum = function(onNetFail) {
       getEarned,
       regPrice,
       register,
+      auctions,
+      updatePrice,
       withdraw
     }
 };
