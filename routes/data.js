@@ -7,17 +7,17 @@ let tokens = []
 let cities = {}
 let tokensByCity = {}
 let levels = {
-  1: 'Level-Large',
-  2: 'Level-Middel',
-  3: 'Level-Small',
-  4: "Level-Tiny"
+  1: "Level-Huge",
+  2: 'Level-Large',
+  3: 'Level-Middel',
+  4: 'Level-Small'
 }
 
 let levelSs = {
-  1: 'Level-L',
-  2: 'Level-M',
-  3: 'Level-S',
-  4: 'Level-T'
+  1: 'Level-H',
+  2: 'Level-L',
+  3: 'Level-M',
+  4: 'Level-S'
 }
 
 let repeated = {}

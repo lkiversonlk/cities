@@ -126,10 +126,13 @@
 <!-- BEGIN: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
 <div class="c-layout-breadcrumbs-1 c-fonts-uppercase c-fonts-bold">
 	<div class="container">
-		<div class="c-page-title c-pull-left">
-			<h3 class="c-font-sbold">Register new token</h3>
-		</div>
+			<h1 class="c-font-sbold">Search a Place's (lon,lat), then copy it to the following register form. </h3>
 	</div>
+</div>
+<div>
+<iframe height="300px" width="100%" frameBorder="0" scrolling="no"
+    src="https://developers.google.com/maps/documentation/utils/geocoder/embed?hl=en">
+</iframe>
 </div>
 <!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
 
@@ -144,13 +147,6 @@
 							<div class="c-line-center c-theme-bg"></div>
 						</div>
 						<form class="form-horizontal">
-
-							<div class="form-group">
-							   	<label for="iLongitude" class="col-md-4 control-label">Lon</label>
-							   	<div class="col-md-6">
-							   		<input type="text" class="form-control  c-square c-theme active" id="iLongitude" placeholder="Input Longitude">
-							  	</div>
-							</div>
 							<div class="form-group">
 							   	<label for="iLatitude" class="col-md-4 control-label">Lat</label>
 							   	<div class="col-md-6">
@@ -158,13 +154,24 @@
 							  	</div>
 							</div>
 							<div class="form-group">
+								<label for="iLongitude" class="col-md-4 control-label">Lon</label>
+								<div class="col-md-6">
+									<input type="text" class="form-control  c-square c-theme active" id="iLongitude" placeholder="Input Longitude">
+							   </div>
+						 	</div>
+							<div class="form-group">
 							   	<label class="col-md-4 control-label">Level</label>
 							   	<div class="col-md-6">
 							   		<select id="iLv" class="form-control  c-square c-border-1px c-theme">
+										{{#each levels}}
+											<option value={{{@key}}}>{{{this}}}</option>
+										{{/each}}
+										<!--
 									  	<option value="4">Level Tiny</option>
 									  	<option value="3">Level Small</option>
 								  		<option value="2">Level Middle</option>
-									  	<option value="1">Level Large</option>
+										<option value="1">Level Large</option>
+										-->
 									</select>
 							    </div>
 							</div>
