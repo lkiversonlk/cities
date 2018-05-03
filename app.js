@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var Tool = require("./public/tool");
 var Web3 = require("web3");
+var data = require("./routes/data")
 
 var web3 = new Web3();
 
@@ -46,12 +47,7 @@ ins.maxLv((err, lv) => {
       4: 'green'
     }
 
-    let level = {
-      1: 'L',
-      2: 'M',
-      3: 'S',
-      4: 'T'
-    }
+    let levelShort = data.levelShort
 
     let zoom = {
       1: 9,
@@ -61,7 +57,7 @@ ins.maxLv((err, lv) => {
     }
 
     let genMaker = (lv) => {
-      return `color:${color[lv]}%7Clabel:${level[lv]}`
+      return `color:${color[lv]}%7Clabel:${levelShort[lv]}`
     }
     app.engine('.html', exphbs({
       extname: ".html",

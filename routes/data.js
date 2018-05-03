@@ -27,6 +27,13 @@ let levelSsr = {
   1: 'Level-Huge'
 }
 
+let levelShort = {
+  4: 'S',
+  3: 'M',
+  2: 'L',
+  1: 'H'
+}
+
 let repeated = {}
 let files = ['newyork','seoul','Tokyo', 'hongkong']
 files.forEach(t => {
@@ -89,3 +96,4 @@ exports.getCityData = (city) => {
 exports.levels = levels
 exports.levelSs = levelSs
 exports.levelSsr = levelSsr
+exports.levelShort = levelShort
